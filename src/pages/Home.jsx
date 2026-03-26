@@ -1,10 +1,14 @@
 import { motion } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 import SectionWrapper from '../components/SectionWrapper';
 import AnimatedButton from '../components/AnimatedButton';
 import Card from '../components/Card';
-import DotGridBackground from '../components/background/DotGridBackground';
+import MagicButton from '../components/MagicButton';
+import ShapeGrid from '../components/background/ShapeGrid';
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import GradientText from '../components/GradientText';
+import TextType from '../components/TextType';
+import tensorVideo from '../assets/tensor_video.mp4';
 
 const quickInfo = [
   { icon: 'event', label: 'Date', value: 'April 16–17' },
@@ -22,67 +26,118 @@ const partners = [
 
 export default function Home() {
   const navigate = useNavigate();
+  const videoRef = useRef(null);
+  const [muted, setMuted] = useState(true);
+
+  // Set medium volume when unmuted
+  const toggleMute = () => {
+    if (videoRef.current) {
+      const next = !muted;
+      videoRef.current.muted = next;
+      videoRef.current.volume = 0.5;
+      if (!next) videoRef.current.play();
+      setMuted(next);
+    }
+  };
 
   return (
-    <main className="overflow-hidden">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20">
-        <div className="absolute inset-0 -z-10 bg-surface">
-          <DotGridBackground 
-            dotSize={4}
-            gap={18}
-            baseColor="#dad5e1"
-            activeColor="#5227FF"
-            proximity={120}
-            speedTrigger={100}
-            shockRadius={250}
-            shockStrength={5}
-            maxSpeed={5000}
-            resistance={750}
-            returnDuration={1.5}
-            opacity={0.4}
+    <main className="min-h-screen">
+      {/* ─── Section 1: Cinematic Video Hero ─── */}
+      <section className="h-screen w-full relative overflow-hidden bg-black flex items-center justify-center">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-90"
+        >
+          <source src={tensorVideo} type="video/mp4" />
+        </video>
+
+        {/* Mute / Unmute button */}
+        <button
+          onClick={toggleMute}
+          className="absolute bottom-8 right-8 z-30 flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full hover:bg-white/20 transition"
+        >
+          <span className="material-symbols-outlined text-base">
+            {muted ? 'volume_off' : 'volume_up'}
+          </span>
+          {muted ? 'Unmute' : 'Mute'}
+        </button>
+
+        {/* Tall smooth fade into Section 2 — black→white smudge */}
+        <div className="absolute bottom-0 left-0 w-full h-64 z-20 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, #ffffff 0%, rgba(255,255,255,0.7) 40%, transparent 100%)' }}
+        />
+      </section>
+
+      {/* ─── Section 2: Core Branding Section ─── */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20 pb-32 overflow-hidden">
+        {/* ShapeGrid canvas background */}
+        <div className="absolute inset-0 z-0">
+          <ShapeGrid
+            speed={0.5}
+            squareSize={60}
+            direction="diagonal"
+            borderColor="#bfc4c0"
+            hoverFillColor="#241334"
+            shape="square"
+            hoverTrailAmount={0}
           />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px]" />
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-4xl mx-auto z-10"
-        >
-          <div className="mb-8 flex justify-center">
-            <motion.div 
-              whileHover={{ rotate: 5, scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="w-24 h-24 bg-white rounded-2xl shadow-xl shadow-primary/5 flex items-center justify-center relative overflow-hidden group p-4 border border-outline-variant/10"
-            >
-              <img src={logo} alt="TENSOR'26 Logo" className="w-full h-full object-contain" />
-              <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </motion.div>
-          </div>
+        {/* Top smudge blending from video section */}
+        <div className="absolute top-0 left-0 w-full h-32 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, #ffffff 0%, transparent 100%)' }}
+        />
 
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-on-background mb-4">
-            TENSOR’26
+        {/* Bottom smudge into Info Grid */}
+        <div className="absolute bottom-0 left-0 w-full h-32 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, #f8f9ff 0%, transparent 100%)' }}
+        />
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="max-w-4xl mx-auto relative z-20"
+        >
+          <h1
+            className="text-6xl md:text-8xl lg:text-9xl font-black tracking-[0.05em] text-on-background mb-8"
+            style={{ fontFamily: "'Orbitron', sans-serif" }}
+          >
+            <TextType
+              text="TENSOR'26"
+              typingSpeed={120}
+              showCursor={false}
+              loop={false}
+              className="inline-block"
+            />
           </h1>
-          <p className="text-xl md:text-2xl font-medium text-primary mb-2 tracking-tight">
+          <GradientText
+            colors={['#5227FF', '#9ee2ff', '#5227FF']}
+            animationSpeed={6}
+            showBorder={false}
+            className="text-2xl md:text-3xl font-black mb-2 tracking-tight"
+          >
             AI-Curated Software Development
-          </p>
+          </GradientText>
           <p className="text-lg md:text-xl text-on-surface-variant uppercase tracking-[0.2em] mb-12">
             24-Hour National Level Hackathon
           </p>
 
           <div className="flex flex-col items-center space-y-8">
-            <AnimatedButton href="https://unstop.com/hackathons/tensor26-srm-insitute-of-science-and-technology-1661516">
-              Register Now
-            </AnimatedButton>
-            
+            <MagicButton
+              href="https://unstop.com/hackathons/tensor26-srm-insitute-of-science-and-technology-1661516"
+            />
             <div className="flex flex-wrap justify-center items-center gap-6 text-on-surface font-semibold tracking-tight">
               <div className="flex items-center space-x-2">
                 <span className="material-symbols-outlined text-primary">calendar_today</span>
                 <span>April 16–17</span>
               </div>
-              <span className="hidden md:block text-outline-variant">|</span>
+              <div className="w-px h-4 bg-slate-300 hidden md:block" />
               <div className="flex items-center space-x-2">
                 <span className="material-symbols-outlined text-primary">location_on</span>
                 <span>SRM IST Tiruchirappalli</span>
@@ -90,57 +145,57 @@ export default function Home() {
             </div>
           </div>
         </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.6 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2"
-        >
-          <span className="text-xs uppercase tracking-widest text-on-surface-variant">Explore the Experience</span>
-          <span className="material-symbols-outlined animate-bounce">keyboard_double_arrow_down</span>
-        </motion.div>
       </section>
 
-      {/* Quick Info Grid */}
-      <SectionWrapper className="py-24 px-6 bg-surface-container-low">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {quickInfo.map((info, i) => (
-              <Card key={i} className="p-8">
-                <span className="material-symbols-outlined text-primary mb-4 block" style={{ fontVariationSettings: "'FILL' 1" }}>
-                  {info.icon}
-                </span>
-                <p className="text-sm uppercase tracking-wider text-on-surface-variant mb-1">{info.label}</p>
-                <h3 className="text-xl font-bold text-on-surface">{info.value}</h3>
-              </Card>
-            ))}
-          </div>
+      {/* ─── Info Grid Section ─── */}
+      <SectionWrapper
+        className="py-24 border-y border-slate-100 relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #f8f9ff 0%, #faf8ff 35%, #ffffff 55%, #faf5ff 75%, #f5f8ff 100%)' }}
+      >
+        {/* Top smudge */}
+        <div className="absolute top-0 left-0 w-full h-20 pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, #f8f9ff 0%, transparent 100%)' }}
+        />
+        <div className="absolute top-0 left-0 w-96 h-96 bg-indigo-400/10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-violet-400/10 rounded-full blur-[100px] translate-x-1/2 translate-y-1/2" />
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 relative z-10">
+          {quickInfo.map((info, i) => (
+            <Card key={i} className="p-8 border border-primary/5 bg-white/80 backdrop-blur-sm">
+              <span className="material-symbols-outlined text-primary mb-4 block text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>
+                {info.icon}
+              </span>
+              <p className="text-sm uppercase tracking-wider text-on-surface-variant mb-1">{info.label}</p>
+              <h3 className="text-xl font-bold text-on-surface">{info.value}</h3>
+            </Card>
+          ))}
         </div>
       </SectionWrapper>
 
-      {/* About Preview */}
-      <SectionWrapper className="py-32 px-6 bg-surface">
-        <div className="max-w-3xl mx-auto text-center">
-          <span className="inline-block px-4 py-1 bg-primary-container text-on-primary-container rounded-full text-xs font-bold tracking-widest uppercase mb-8">
-            The Mission
-          </span>
-          <p className="text-2xl md:text-3xl font-body leading-relaxed text-on-background tracking-tight">
-            TENSOR’26 is a 24-hour national-level hackathon where ideas evolve into real-world AI solutions through structured development.
-          </p>
-
-          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-12 items-center opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+      {/* ─── Partners Section ─── */}
+      <SectionWrapper
+        className="py-32 border-t border-slate-100 relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #f8f9ff 0%, #faf8ff 35%, #ffffff 55%, #faf5ff 75%, #f5f8ff 100%)' }}
+      >
+        <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-400/10 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-violet-400/10 rounded-full blur-[100px] -translate-x-1/2 translate-y-1/2" />
+        <div className="max-w-5xl mx-auto text-center relative z-10 px-6">
+          <p className="text-[10px] uppercase tracking-[0.6em] font-black text-on-surface-variant/40 mb-16">Trusted Industry Leaders</p>
+          <div className="flex flex-wrap justify-center items-center gap-16 grayscale opacity-40 hover:grayscale-0 transition-all duration-700">
             {partners.map((partner, i) => (
-              <motion.img 
+              <motion.img
                 key={i}
-                whileHover={{ scale: 1.05 }}
-                src={partner.src} 
-                alt={partner.name} 
-                className="max-h-12 w-auto mx-auto object-contain"
+                src={partner.src}
+                alt={partner.name}
+                whileHover={{ scale: 1.15 }}
+                className="h-10 w-auto object-contain"
               />
             ))}
           </div>
         </div>
+        {/* Bottom smudge smudge into footer */}
+        <div className="absolute bottom-0 left-0 w-full h-32 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, #ffffff 0%, transparent 100%)' }}
+        />
       </SectionWrapper>
     </main>
   );

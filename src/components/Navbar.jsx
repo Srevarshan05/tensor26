@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import logo from '../assets/logo.png'
+import { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const links = [
   { to: '/',       label: 'Home'   },
@@ -9,121 +8,104 @@ const links = [
   { to: '/event',  label: 'Event'  },
   { to: '/prizes', label: 'Prizes' },
   { to: '/faq',    label: 'FAQ'    },
-]
+];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const navigate = useNavigate()
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handler)
-    return () => window.removeEventListener('scroll', handler)
-  }, [])
+    const handler = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handler);
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? 'glass-nav shadow-sm' : 'bg-white/60 backdrop-blur-md'
-      }`}
-    >
-      <div className="flex justify-between items-center px-6 md:px-8 py-4 max-w-7xl mx-auto">
-        {/* Logo */}
-        <NavLink
-          to="/"
-          className="flex items-center gap-3 text-2xl font-black tracking-tighter text-slate-900 group"
-        >
-          <div className="w-10 h-10 transition-transform group-hover:scale-110">
-            <img src={logo} alt="Logo" className="w-full h-full object-contain" />
-          </div>
-          <span>TENSOR'26</span>
+    <div className="fixed top-8 w-full z-50 px-4 pointer-events-none">
+      <nav className={`mx-auto max-w-fit pointer-events-auto flex items-center border border-slate-200 px-6 py-3 rounded-full text-slate-900 text-sm font-medium transition-all duration-300 ${
+        scrolled ? 'bg-white/90 shadow-lg backdrop-blur-lg' : 'bg-white/70 backdrop-blur-md'
+      }`}>
+        <NavLink to="/" className="mr-6 flex items-center gap-2">
+            <span className="font-black tracking-widest text-lg" style={{ fontFamily: "'Orbitron', sans-serif" }}>TENSOR</span>
         </NavLink>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center gap-8 px-4 border-l border-slate-200 ml-2">
           {links.map(({ to, label }) => (
             <NavLink
               key={to}
               to={to}
               end={to === '/'}
-              className={({ isActive }) =>
-                isActive
-                  ? 'text-primary font-semibold relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:rounded-full pb-1'
-                  : 'text-slate-600 font-medium hover:text-slate-900 transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-0.5 after:bg-slate-400 after:rounded-full after:transition-all after:duration-300 pb-1'
-              }
+              className="relative overflow-hidden h-5 group"
             >
-              {label}
+              <span className="block group-hover:-translate-y-full transition-transform duration-300">{label}</span>
+              <span className="block absolute top-full left-0 group-hover:translate-y-[-100%] transition-transform duration-300 text-primary font-bold">
+                {label}
+              </span>
             </NavLink>
           ))}
         </div>
 
-        {/* CTA Button */}
-        <div className="flex items-center gap-3">
-          <motion.a
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.95 }}
+        <div className="hidden ml-8 md:flex items-center gap-3">
+          <button className="border border-slate-200 hover:bg-slate-50 px-5 py-2 rounded-full text-xs font-bold transition">
+            Contact
+          </button>
+          <a 
             href="https://unstop.com/hackathons/tensor26-srm-insitute-of-science-and-technology-1661516"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:block bg-primary text-on-primary px-6 py-2 rounded-xl font-semibold hover:bg-primary-dim transition-colors duration-200 shadow-sm"
+            className="bg-slate-900 hover:bg-black text-white px-5 py-2 rounded-full text-xs font-bold transition-all hover:shadow-[0px_0px_20px_rgba(0,0,0,0.3)] shadow-black/20"
           >
-            Register Now
-          </motion.a>
-
-          {/* Mobile Hamburger */}
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-surface-container transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            <span className="material-symbols-outlined text-on-surface">
-              {mobileOpen ? 'close' : 'menu'}
-            </span>
-          </button>
+            Register
+          </a>
         </div>
-      </div>
+
+        {/* Mobile Toggle */}
+        <button 
+          className="md:hidden ml-4 p-1 text-slate-600"
+          onClick={() => setMobileOpen(!mobileOpen)}
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <path d={mobileOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      </nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-100 overflow-hidden"
+            initial={{ opacity: 0, scale: 0.95, y: -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -20 }}
+            className="md:hidden absolute top-20 left-0 w-full px-4 pointer-events-auto"
           >
-            <div className="flex flex-col px-6 py-4 space-y-1">
+            <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl p-6 flex flex-col items-center gap-4">
               {links.map(({ to, label }) => (
                 <NavLink
                   key={to}
                   to={to}
-                  end={to === '/'}
                   onClick={() => setMobileOpen(false)}
-                  className={({ isActive }) =>
-                    `py-3 px-4 rounded-lg font-medium transition-colors ${
-                      isActive
-                        ? 'text-primary bg-primary-container/40'
-                        : 'text-slate-700 hover:bg-surface-container'
-                    }`
-                  }
+                  className="text-lg font-bold text-slate-800 hover:text-primary transition-colors"
                 >
                   {label}
                 </NavLink>
               ))}
-              <a
+              <div className="w-full h-px bg-slate-100 my-2" />
+              <button className="w-full border border-slate-200 py-3 rounded-2xl font-bold">
+                Contact
+              </button>
+              <a 
                 href="https://unstop.com/hackathons/tensor26-srm-insitute-of-science-and-technology-1661516"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => setMobileOpen(false)}
-                className="mt-2 bg-primary text-on-primary px-6 py-3 rounded-xl font-semibold text-center"
+                className="w-full bg-slate-900 text-white py-3 rounded-2xl font-bold text-center"
               >
-                Register Now
+                Register
               </a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
-  )
+    </div>
+  );
 }

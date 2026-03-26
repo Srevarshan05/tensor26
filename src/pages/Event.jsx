@@ -1,14 +1,7 @@
 import { motion } from 'framer-motion';
 import SectionWrapper from '../components/SectionWrapper';
 import Card from '../components/Card';
-
-const steps = [
-  { id: '01', icon: 'terminal', title: 'Prompt Engineering', desc: 'Defining high-fidelity instructions to guide the AI core.' },
-  { id: '02', icon: 'code_blocks', title: 'Development', desc: 'Autonomous generation of modular architectures and logic.' },
-  { id: '03', icon: 'bug_report', title: 'Debugging', desc: 'Collaborative agent testing to identify edge-case failures.' },
-  { id: '04', icon: 'settings_input_component', title: 'Fine-Tuning', desc: 'Optimizing output parameters for precision and speed.' },
-  { id: '05', icon: 'rocket_launch', title: 'Deployment', desc: 'Shipping live production instances to the cloud.' },
-];
+import Roadmap from '../components/Roadmap';
 
 const schedule = [
   { time: '09:00 – 10:00', label: 'Opening', title: 'Inauguration', desc: 'Welcome, problem statement unveiling, and AI Scientist briefing.', primary: true },
@@ -23,93 +16,72 @@ const schedule = [
 
 export default function Event() {
   return (
-    <main className="pt-32 pb-24 bg-surface">
-      {/* Hero Header */}
-      <section className="max-w-7xl mx-auto px-8 mb-24">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-16"
-        >
-          <span className="text-primary font-bold tracking-[0.2em] text-sm uppercase block mb-4">Architecture</span>
-          <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-on-surface mb-8">How It Works</h1>
-          <p className="text-lg text-on-surface-variant max-w-2xl leading-relaxed">
-            TENSOR’26 is an AI-first development marathon. We challenge engineers to build complex systems by orchestrating intelligence rather than manually typing syntax.
-          </p>
-        </motion.div>
-
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
-          <div className="hidden lg:block absolute top-[60%] left-0 w-full h-px bg-primary/20 -z-0" />
-          {steps.map((step, i) => (
-            <motion.div
-              key={step.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="z-10"
-            >
-              <Card className="p-8 h-full border border-black/5 flex flex-col items-start bg-white/80 backdrop-blur-sm">
-                <div className="text-primary-dim font-black text-4xl mb-6 opacity-10">{step.id}</div>
-                <div className="bg-primary-container text-on-primary-container w-12 h-12 rounded-full flex items-center justify-center mb-6">
-                  <span className="material-symbols-outlined">{step.icon}</span>
-                </div>
-                <h3 className="font-bold text-xl mb-2">{step.title}</h3>
-                <p className="text-sm text-on-surface-variant leading-relaxed">{step.desc}</p>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+    <main className="pt-24 pb-24 bg-white">
+      {/* ─── Fully Responsive Animated Roadmap Hero ─── */}
+      <section className="relative overflow-hidden mb-24 min-h-[700px]">
+        {/* Roadmap now handles internal responsiveness for Mobile & PC */}
+        <Roadmap />
+        
+        {/* Bottom smudge smudge into Timeline */}
+        <div className="absolute bottom-0 left-0 w-full h-32 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, #f8f9ff 0%, transparent 100%)' }}
+        />
       </section>
 
-      {/* Schedule Timeline */}
-      <section className="bg-surface-container-low py-24 px-8 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <SectionWrapper className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+      {/* ─── Schedule Timeline Section ─── */}
+      <SectionWrapper 
+        className="py-32 px-8 relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #f8f9ff 0%, #faf8ff 35%, #ffffff 55%, #faf5ff 75%, #f5f8ff 100%)' }}
+      >
+        <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-400/10 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-violet-400/10 rounded-full blur-[100px] -translate-x-1/2 translate-y-1/2" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <SectionWrapper className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <div>
-              <span className="text-primary font-bold tracking-[0.2em] text-sm uppercase block mb-4">Timeline</span>
-              <h2 className="text-5xl font-black tracking-tighter text-on-surface">Master Schedule</h2>
+              <span className="text-primary font-black tracking-[0.4em] text-[10px] uppercase block mb-4 opacity-60">Timeline</span>
+              <h2 className="text-5xl md:text-6xl font-black tracking-tight text-on-surface" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+                Master <span className="text-primary">Schedule</span>
+              </h2>
             </div>
             <div className="flex gap-4">
-              <span className="bg-white/80 backdrop-blur px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase shadow-sm border border-black/5">24 Hours</span>
-              <span className="bg-white/80 backdrop-blur px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase shadow-sm border border-black/5">SRM IST TRICHY</span>
+              <span className="bg-white/80 backdrop-blur px-6 py-2.5 rounded-2xl text-[10px] font-black tracking-widest uppercase shadow-xl border border-primary/5">24 Hours</span>
+              <span className="bg-white/80 backdrop-blur px-6 py-2.5 rounded-2xl text-[10px] font-black tracking-widest uppercase shadow-xl border border-primary/5">SRM IST TRICHY</span>
             </div>
           </SectionWrapper>
 
-          <div className="space-y-4">
+          <div className="space-y-6">
             {schedule.map((item, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05, duration: 0.5 }}
-                className={`group flex flex-col md:flex-row rounded-xl overflow-hidden shadow-sm border border-black/5 transition-colors
-                  ${item.isBreak ? 'bg-surface-container-low border-dashed opacity-70' : 
-                    item.checkpoint ? 'bg-tertiary-container' : 
-                    item.dark ? 'bg-inverse-surface text-background' : 'bg-white hover:bg-surface-container-lowest'}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.05, duration: 0.7, ease: "circOut" }}
+                className={`group flex flex-col md:flex-row rounded-[2rem] overflow-hidden shadow-sm border border-black/5 hover:shadow-2xl transition-all duration-500
+                  ${item.isBreak ? 'bg-surface-container-low border-dashed opacity-70 scale-95 origin-left' : 
+                    item.checkpoint ? 'bg-indigo-50 border-indigo-200 shadow-indigo-100/50' : 
+                    item.dark ? 'bg-slate-900 text-white shadow-slate-900/40' : 'bg-white/90 backdrop-blur-md hover:bg-white'}
                 `}
               >
-                <div className={`md:w-48 p-6 flex flex-col justify-center
-                  ${item.primary ? 'bg-primary-container text-on-primary-container' : 
-                    item.accent ? 'bg-surface-container-highest group-hover:bg-primary/5' : 
-                    item.checkpoint ? 'text-on-tertiary-container' : 
-                    item.dark ? 'text-background' : 'text-on-surface'}
+                <div className={`md:w-56 p-8 flex flex-col justify-center
+                  ${item.primary ? 'bg-primary text-white shadow-[inset_0_4px_12px_rgba(0,0,0,0.1)]' : 
+                    item.accent ? 'bg-slate-50 group-hover:bg-primary/5' : 
+                    item.checkpoint ? 'text-indigo-900' : 
+                    item.dark ? 'text-white border-r border-white/10' : 'text-slate-900'}
                 `}>
-                  <span className="font-black text-xl">{item.time}</span>
-                  <span className="text-xs font-bold uppercase tracking-widest opacity-60">{item.label}</span>
+                  <span className="font-black text-2xl tracking-tight mb-1">{item.time}</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-60">{item.label}</span>
                 </div>
                 
-                <div className={`flex-1 p-6 md:p-8 flex items-center
-                  ${item.accent ? 'border-l-4 border-primary' : ''}
+                <div className={`flex-1 p-8 md:p-10 flex items-center
+                  ${item.accent ? 'border-l-4 border-primary/30 group-hover:border-primary transition-colors' : ''}
                 `}>
-                  <div className="flex items-center gap-4 w-full">
-                    {item.icon && <span className="material-symbols-outlined text-outline text-3xl">{item.icon}</span>}
+                  <div className="flex items-center gap-6 w-full">
+                    {item.icon && <span className="material-symbols-outlined text-primary text-4xl opacity-80" style={{ fontVariationSettings: "'FILL' 1" }}>{item.icon}</span>}
                     <div>
-                      <h4 className={`text-2xl font-bold mb-1 ${item.checkpoint ? 'text-on-tertiary-container' : ''}`}>{item.title}</h4>
-                      <p className={`leading-relaxed ${item.dark ? 'opacity-80' : 'text-on-surface-variant'}`}>{item.desc}</p>
+                      <h4 className={`text-2xl font-black mb-2 tracking-tight ${item.checkpoint ? 'text-indigo-900' : ''}`}>{item.title}</h4>
+                      <p className={`leading-relaxed font-medium ${item.dark ? 'opacity-70' : 'text-on-surface-variant'}`}>{item.desc}</p>
                     </div>
                   </div>
                 </div>
@@ -117,42 +89,67 @@ export default function Event() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Competitive Flow Summary */}
-      <SectionWrapper className="max-w-7xl mx-auto px-8 mt-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-          <div>
-            <h2 className="text-4xl font-bold tracking-tight mb-8">The Competitive Flow</h2>
-            <p className="text-on-surface-variant text-lg leading-relaxed mb-10">
-              The TENSOR’26 workflow is designed to simulate the future of software engineering. Participants are evaluated not just on the final product, but on the sophistication of their AI orchestration process and the cleanliness of their generated systems.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <div className="bg-white border border-black/5 px-6 py-4 rounded-full flex items-center gap-3 shadow-sm overflow-x-auto no-scrollbar">
-                {['Start', 'Build', 'Submit', 'Evaluate', 'Pitch'].map((step, i, arr) => (
-                  <div key={step} className="flex items-center gap-3 whitespace-nowrap">
-                    <span className={`font-bold ${i === 0 || i === arr.length - 1 ? 'text-primary' : 'text-on-surface'}`}>{step}</span>
-                    {i < arr.length - 1 && <span className="material-symbols-outlined text-sm opacity-30">arrow_forward</span>}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <motion.div 
-            whileHover={{ scale: 1.02 }}
-            className="relative rounded-2xl overflow-hidden aspect-video shadow-2xl group"
-          >
-            <img 
-              className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa1qdr2pZ1SEc_V37ovMOkkhDSKsBB5twCj8JCKufQabBkmOhUNBhLU0sZeWieCCJB33sa1pd_BG4gWv5Wzikpx4-40UseojOqLw7nb4SASzTOQFMtHbs-S-577Z9VNxnlL2j45479It_llUh12WtSWK5eEDHVgMtdEakvOUDrrpOXC6hO32sOGd_JK196TaANWqz9fEKwSA3qVvWtFO131Sz8ceTMMs-vCyud_tnKz-_kNueubE_KAY5AamI7E9ybnxzv9Q40lwA" 
-              alt="Workspace"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-              <p className="text-white text-lg font-medium italic opacity-90">“The best way to predict the future is to generate it.”</p>
-            </div>
-          </motion.div>
-        </div>
       </SectionWrapper>
+
+      {/* ─── Competitive Flow Summary ─── */}
+      <section className="py-32 bg-white px-8 overflow-hidden relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid md:grid-cols-2 gap-24 items-center">
+            <motion.div
+               initial={{ opacity: 0, x: -40 }}
+               whileInView={{ opacity: 1, x: 0 }}
+               viewport={{ once: true }}
+               transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl font-black tracking-tight text-on-background mb-8" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+                The Competitive <span className="text-primary">Flow</span>
+              </h2>
+              <p className="text-on-surface-variant text-lg leading-relaxed mb-12 font-medium">
+                The TENSOR’26 workflow is designed to simulate the future of software engineering. Participants are evaluated not just on the final product, but on the sophistication of their AI orchestration process and the cleanliness of their generated systems.
+              </p>
+              
+              <div className="flex flex-wrap gap-4">
+                <div className="bg-slate-50 border border-slate-200 px-8 py-5 rounded-[2rem] flex items-center gap-4 shadow-sm group">
+                  {['Start', 'Build', 'Submit', 'Evaluate', 'Pitch'].map((step, i, arr) => (
+                    <div key={step} className="flex items-center gap-4 whitespace-nowrap">
+                      <span className={`font-black text-sm tracking-widest uppercase ${i === 0 || i === arr.length - 1 ? 'text-primary' : 'text-slate-400 opacity-60'}`}>{step}</span>
+                      {i < arr.length - 1 && <span className="material-symbols-outlined text-xs text-slate-300">arrow_forward</span>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: "circOut" }}
+              className="relative group h-full"
+            >
+              <div className="absolute -inset-4 bg-primary/10 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="relative rounded-[2rem] overflow-hidden aspect-[4/3] shadow-2xl border-4 border-white">
+                <img 
+                  className="w-full h-full object-cover grayscale-[0.4] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" 
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa1qdr2pZ1SEc_V37ovMOkkhDSKsBB5twCj8JCKufQabBkmOhUNBhLU0sZeWieCCJB33sa1pd_BG4gWv5Wzikpx4-40UseojOqLw7nb4SASzTOQFMtHbs-S-577Z9VNxnlL2j45479It_llUh12WtSWK5eEDHVgMtdEakvOUDrrpOXC6hO32sOGd_JK196TaANWqz9fEKwSA3qVvWtFO131Sz8ceTMMs-vCyud_tnKz-_kNueubE_KAY5AamI7E9ybnxzv9Q40lwA" 
+                  alt="Workspace"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute bottom-0 left-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                  <p className="text-white text-lg font-black italic tracking-tight">“The best way to predict the future is to generate it.”</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Bottom smudge into footer */}
+        <div className="absolute bottom-0 left-0 w-full h-32 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, #ffffff 0%, transparent 100%)' }}
+        />
+      </section>
     </main>
   );
 }

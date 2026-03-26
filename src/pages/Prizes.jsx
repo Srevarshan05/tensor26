@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import SectionWrapper from '../components/SectionWrapper';
 import PrizeCard from '../components/PrizeCard';
+import Antigravity from '../components/background/Antigravity';
 
 const smallAwards = [
   { amount: '₹2,000', label: 'Track Winner', icon: 'stars' },
@@ -10,7 +11,27 @@ const smallAwards = [
 
 export default function Prizes() {
   return (
-    <main className="pt-32 pb-24 bg-surface min-h-screen">
+    <main className="pt-32 pb-24 bg-surface min-h-screen relative">
+      {/* Background Animation */}
+      <div className="fixed inset-0 pointer-events-none -z-10 opacity-40">
+        <Antigravity
+          count={300}
+          magnetRadius={10}
+          ringRadius={10}
+          waveSpeed={0.4}
+          waveAmplitude={1}
+          particleSize={1}
+          lerpSpeed={0.1}
+          color="#0400ff"
+          autoAnimate={false} // Mouse interactive
+          particleVariance={1}
+          rotationSpeed={0}
+          depthFactor={1}
+          pulseSpeed={3}
+          particleShape="capsule"
+          fieldStrength={10}
+        />
+      </div>
       {/* Hero Header */}
       <header className="max-w-7xl mx-auto px-8 mb-20">
         <motion.div 
