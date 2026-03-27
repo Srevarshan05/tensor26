@@ -8,6 +8,9 @@ const About  = lazy(() => import('./pages/About'))
 const Event  = lazy(() => import('./pages/Event'))
 const Prizes = lazy(() => import('./pages/Prizes'))
 const FAQ    = lazy(() => import('./pages/FAQ'))
+const CodeOfConduct  = lazy(() => import('./pages/CodeOfConduct'))
+const PrivacyPolicy  = lazy(() => import('./pages/PrivacyPolicy'))
+const Terms  = lazy(() => import('./pages/Terms'))
 
 function PageLoader() {
   return (
@@ -28,6 +31,9 @@ export default function App() {
           <Route path="/event"   element={<Event />}  />
           <Route path="/prizes"  element={<Prizes />} />
           <Route path="/faq"     element={<FAQ />}    />
+          <Route path="/code-of-conduct" element={<CodeOfConduct />} />
+          <Route path="/privacy-policy"  element={<PrivacyPolicy />} />
+          <Route path="/terms"           element={<Terms />} />
         </Routes>
       </Suspense>
       <Footer />

@@ -2,6 +2,10 @@ import { motion } from 'framer-motion';
 import SectionWrapper from '../components/SectionWrapper';
 import Card from '../components/Card';
 import ShapeGrid from '../components/background/ShapeGrid';
+import abt1 from '../assets/abtimage1.svg';
+import abt2 from '../assets/abtimage2.svg';
+import abt3 from '../assets/abtimage3.svg';
+import abt4 from '../assets/abtimage4.svg';
 
 const focusAreas = [
   { icon: 'neurology', title: 'AI-driven development', description: 'Leveraging the power of LLMs and machine learning to accelerate the coding lifecycle and architectural design.', color: 'bg-indigo-50', text: 'text-indigo-600' },
@@ -18,25 +22,23 @@ const participationReasons = [
 
 export default function About() {
   return (
-    <main className="min-h-screen bg-surface">
-      {/* ─── Hero Section with ShapeGrid ─── */}
-      <section className="relative h-[70vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden bg-white">
-        {/* ShapeGrid canvas background */}
-        <div className="absolute inset-0 z-0">
-          <ShapeGrid
-            speed={0.5}
-            squareSize={60}
-            direction="diagonal"
-            borderColor="#bfc4c0"
-            hoverFillColor="#241334"
-            shape="square"
-            hoverTrailAmount={0}
-          />
-        </div>
+    <main className="min-h-screen relative">
+      {/* ─── Persistent Background Grid for Hero + Focus Areas ─── */}
+      <div className="fixed inset-0 z-0 overflow-hidden">
+        <ShapeGrid
+          speed={0.5}
+          squareSize={60}
+          direction="diagonal"
+          borderColor="#bfc4c0"
+          hoverFillColor="#241334"
+          shape="square"
+          hoverTrailAmount={20}
+        />
+      </div>
 
-        {/* Top Spacer for Navbar */}
+      {/* ─── Hero Section ─── */}
+      <section className="relative h-[80vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden z-10 pt-20">
         <div className="h-20 w-full" />
-
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -54,21 +56,13 @@ export default function About() {
             TENSOR’26 is a 24-hour national-level hackathon focused on AI-curated software development, bringing together visionaries to build the future.
           </p>
         </motion.div>
-
-        {/* Smudge fade into Focus Areas */}
-        <div className="absolute bottom-0 left-0 w-full h-32 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to top, #f8f9ff 0%, transparent 100%)' }}
-        />
       </section>
 
       {/* ─── Focus Areas Section ─── */}
       <SectionWrapper 
-        className="py-32 border-y border-slate-100 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #f8f9ff 0%, #faf8ff 35%, #ffffff 55%, #faf5ff 75%, #f5f8ff 100%)' }}
+        className="py-32 border-y border-slate-200/50 relative overflow-hidden z-10"
+        style={{ background: 'linear-gradient(to bottom, transparent 0%, rgba(232, 232, 232, 0.5) 100%)' }}
       >
-        <div className="absolute top-0 left-0 w-96 h-96 bg-indigo-400/10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-violet-400/10 rounded-full blur-[100px] translate-x-1/2 translate-y-1/2" />
-        
         <div className="max-w-7xl mx-auto px-8 relative z-10">
           <div className="mb-20 text-center">
             <h2 className="text-4xl font-black tracking-tight text-on-background mb-4" style={{ fontFamily: "'Orbitron', sans-serif" }}>Focus Areas</h2>
@@ -84,13 +78,13 @@ export default function About() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: i * 0.15, ease: "easeOut" }}
               >
-                <Card className="p-10 h-full border border-primary/5 bg-white/80 backdrop-blur-sm shadow-sm hover:shadow-xl transition-all duration-500">
+                <div className="glass-card-premium p-10 h-full">
                   <div className={`w-14 h-14 ${area.color} ${area.text} flex items-center justify-center rounded-2xl mb-8 shadow-inner`}>
                     <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>{area.icon}</span>
                   </div>
                   <h3 className="text-xl font-bold mb-4 tracking-tight">{area.title}</h3>
                   <p className="text-on-surface-variant leading-relaxed text-sm font-medium opacity-80">{area.description}</p>
-                </Card>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -98,7 +92,7 @@ export default function About() {
       </SectionWrapper>
 
       {/* ─── Participation Section ─── */}
-      <section className="py-32 bg-white px-8 overflow-hidden relative">
+      <section className="py-32 bg-white px-8 overflow-hidden relative z-10">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
@@ -135,32 +129,31 @@ export default function About() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: "circOut" }}
-              className="grid grid-cols-2 gap-4"
+              className="flex justify-center items-center"
             >
-              <div className="space-y-4 pt-12">
-                <div className="h-48 rounded-3xl bg-slate-100 overflow-hidden shadow-2xl">
-                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf2g-c0JEw9hx1EIVeziTGbOis1wxQQJb89BPQ5Dn69A1My9I8uM6bWvNmUwVGH76gxpxzwl1D-sxNbj5N6v5UXFhhSbqdrV_bCGSA9P8_81FaM1N0FfnDjV8uDD2nzbUpA-nLI605lAhGyIvXekLvOfc4cKuP-ZOVef0tni-7c_dM0W43WX8ktQrErIR9Pd3iDRUC8DFnxFtpEKqWBMSwddf1OxR4he_16SSzzC-udINg93YLRrL37uaDaGoy6QWCXAXXBHxSrkU" 
-                       alt="Teamwork" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
-                </div>
-                <div className="h-64 rounded-3xl bg-primary overflow-hidden shadow-2xl">
-                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgXxw1wkVRGzXOv1BTXJ6biYEGCea9SGjRWa8FnEUREJ4yGjtqDmTXf14jgHc7FOAOw0u0jFX_WDN3u_61MOgjR1YWz-6iROjWTxHa7eW-uC3s2F942yL-td44pU_mOlK-y8FQD7OJwT0NjEFOpblL-EPP4rh_ENBUUuBxpSo-saA0D2IVQCsBdk_P8VkzcmPJXZ1QaBkvFmx-Z3nrkgaVRQJ0T6d5xqiOSh25lGojXGzcNYqX81qV1Jlp3rU9MY8_9hF9jlDLXsg" 
-                       alt="Hackathon Energy" className="w-full h-full object-cover mix-blend-overlay hover:scale-110 transition-transform duration-700" />
-                </div>
-              </div>
-              <div className="space-y-4">
-                <div className="h-64 rounded-3xl bg-slate-200 overflow-hidden shadow-2xl">
-                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmmJeCwaqTAgVQVWzBFh9Yey5rhZnHvVZPHaazi_trvM3L_tiXChqYlIViujiT5ca_XY7luD-G_Tm3IfowQiF25Ay2_xx1IXMHHQycKYi9PWA8dlgsyoSIRujB9AhV4YCFnKEZKOeW6ROSdO4PTpY8_sv5nftjkUm6m0kCbe3r2E-VairPp6TAcAv_pDuoITA6swyG-ZGhJrkc2SO-oHr1xX84awFPozsdghpQYEkh6aAG5p-nj7gxYiQyhj-5eoohMk6gG3jLhxU" 
-                       alt="Modern Workspace" className="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 hover:grayscale-0 transition-all duration-700" />
-                </div>
-                <div className="h-48 rounded-3xl bg-slate-50 overflow-hidden shadow-2xl">
-                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-lw7SqBNTEhopLbiKmI6j8KYtqPj1FmTTaYxsr8QOkAtCKp7YJMLq89o5p55vLjnrDzgfh1lZIm8RovdTT-_H1O9RtUAEbfLZXv4DeJSGp2UVsZBgeXx6Om7IapA03Tp3qhd71q8XRsrQ_Y2vhorAnV8lg6LJGKu6H6gFLSZ3e9NH0J8uRnp_UQ-n2wMaahu6hK4EmDA0QRe2__pI5CWhkzUs1WmT2i48DhB_sM2G1LKlxWAVRNUcbuYx97cRHctyeMIhfOnmTCY" 
-                       alt="Development Hands" className="w-full h-full object-cover grayscale opacity-80 hover:opacity-100 hover:grayscale-0 transition-all duration-700" />
+              <div className="carousel-3d-wrapper">
+                <div className="card-3d">
+                  {/* Slide 1 */}
+                  <div style={{ transform: 'translate(-50%, -50%) rotateY(0deg) translateZ(280px)' }}>
+                    <img src={abt1} className="w-full h-full object-cover" alt="Slide 1" />
+                  </div>
+                  {/* Slide 2 */}
+                  <div style={{ transform: 'translate(-50%, -50%) rotateY(90deg) translateZ(280px)' }}>
+                    <img src={abt2} className="w-full h-full object-cover" alt="Slide 2" />
+                  </div>
+                  {/* Slide 3 */}
+                  <div style={{ transform: 'translate(-50%, -50%) rotateY(180deg) translateZ(280px)' }}>
+                    <img src={abt3} className="w-full h-full object-cover" alt="Slide 3" />
+                  </div>
+                  {/* Slide 4 */}
+                  <div style={{ transform: 'translate(-50%, -50%) rotateY(270deg) translateZ(280px)' }}>
+                    <img src={abt4} className="w-full h-full object-cover" alt="Slide 4" />
+                  </div>
                 </div>
               </div>
             </motion.div>
           </div>
         </div>
-        {/* Bottom smudge smudge into footer */}
         <div className="absolute bottom-0 left-0 w-full h-32 z-10 pointer-events-none"
           style={{ background: 'linear-gradient(to top, #ffffff 0%, transparent 100%)' }}
         />

@@ -1,37 +1,28 @@
 import { motion } from 'framer-motion';
 import SectionWrapper from '../components/SectionWrapper';
 import PrizeCard from '../components/PrizeCard';
-import Antigravity from '../components/background/Antigravity';
+import ShapeGrid from '../components/background/ShapeGrid';
 
-const smallAwards = [
-  { amount: '₹2,000', label: 'Track Winner', icon: 'stars' },
-  { amount: '₹2,000', label: 'Social Impact', icon: 'stars' },
-  { amount: '₹2,000', label: 'Best Design', icon: 'stars' },
-];
+
 
 export default function Prizes() {
   return (
-    <main className="pt-32 pb-24 bg-surface min-h-screen relative">
-      {/* Background Animation */}
-      <div className="fixed inset-0 pointer-events-none -z-10 opacity-40">
-        <Antigravity
-          count={300}
-          magnetRadius={10}
-          ringRadius={10}
-          waveSpeed={0.4}
-          waveAmplitude={1}
-          particleSize={1}
-          lerpSpeed={0.1}
-          color="#0400ff"
-          autoAnimate={false} // Mouse interactive
-          particleVariance={1}
-          rotationSpeed={0}
-          depthFactor={1}
-          pulseSpeed={3}
-          particleShape="capsule"
-          fieldStrength={10}
+    <main className="pt-32 pb-24 min-h-screen relative">
+      {/* Background Interactive Grid Animation */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <ShapeGrid
+          speed={0.5}
+          squareSize={60}
+          direction="diagonal"
+          borderColor="#bfc4c0"
+          hoverFillColor="#241334"
+          shape="square"
+          hoverTrailAmount={20}
         />
       </div>
+      
+      {/* Ensure content is above the grid but interactive */}
+      <div className="relative z-10 font-sans">
       {/* Hero Header */}
       <header className="max-w-7xl mx-auto px-8 mb-20">
         <motion.div 
@@ -118,39 +109,27 @@ export default function Prizes() {
               <p className="text-on-surface-variant text-sm mt-1">Recognizing innovation, design, and complexity</p>
             </div>
           </div>
-          <div className="flex flex-wrap gap-4 justify-center">
-            {smallAwards.map((award, i) => (
-              <motion.div 
-                key={i}
-                whileHover={{ y: -5 }}
-                className="bg-white px-8 py-4 rounded-xl border border-black/5 shadow-sm text-center min-w-[140px]"
-              >
-                <span className="text-2xl font-black text-on-background block mb-1">{award.amount}</span>
-                <span className="text-xs font-bold text-on-surface-variant uppercase tracking-tighter opacity-80">{award.label}</span>
-              </motion.div>
-            ))}
-          </div>
+
+          {/* Mystery teaser */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-center justify-center bg-white border border-dashed border-primary/30 rounded-2xl px-10 py-6 shadow-sm text-center min-w-[260px] relative overflow-hidden group"
+          >
+            {/* Animated shimmer */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+            <span className="text-4xl mb-3 animate-pulse">🔒</span>
+            <p className="text-base font-black text-on-background tracking-tight">To Be Revealed</p>
+            <p className="text-xs font-bold text-primary uppercase tracking-widest mt-1 opacity-70">On the Day of Hackathon</p>
+            <p className="text-xs text-on-surface-variant mt-2 max-w-[200px] leading-snug">Stay tuned — something exciting awaits the best teams.</p>
+          </motion.div>
         </SectionWrapper>
       </section>
 
-      {/* Bottom Visual section */}
-      <SectionWrapper className="max-w-7xl mx-auto px-8 mt-32">
-        <motion.div 
-          whileHover={{ scale: 1.01 }}
-          className="h-96 rounded-2xl overflow-hidden relative shadow-2xl group"
-        >
-          <img 
-            className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuArzsavLLtAIK8PZ9ZVso9acoJOeMHW6-3ycq-dFWQ2u7br4DDBTOHr5BdQGfEnxGp7QxIvlUYZmdJ7PwR40enADZm42KYxkY3rA_OukRPIHHXLQnd6eGwvxGYxu_bkoKSvALtTajCmHcJ7Y8B4SIH2f4Wl7-RVSyb2mOn46DjiiFZvryO5W-Wjs62FQp-MCKe3-QyTJajgZqasvj-fzV94-frOCzxs9i1vGSUn2j8A-jsvB82jbTGeAHUmJZAPIvxsZLI7Qw7OkWw" 
-            alt="Futuristic Lab"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-1000" />
-          <div className="absolute bottom-10 left-10 max-w-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-            <p className="text-white/60 text-xs font-black uppercase tracking-[0.4em] mb-4">Build the Future</p>
-            <h2 className="text-3xl md:text-4xl font-black text-white leading-tight">Innovation is its own reward, but we believe in honoring excellence.</h2>
-          </div>
-        </motion.div>
-      </SectionWrapper>
+
+      </div>
     </main>
   );
 }

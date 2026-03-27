@@ -1,5 +1,10 @@
 import { useEffect, useRef } from 'react';
 
+/**
+ * ShapeGrid — static hover-interaction grid (no scrolling movement).
+ * Used on Home, About, FAQ, Prizes, and other pages.
+ * Tiles light up on hover; the grid itself stays fixed in place.
+ */
 export default function ShapeGrid({
   speed = 0.5,
   squareSize = 60,
@@ -35,15 +40,15 @@ export default function ShapeGrid({
           stateRef.current.push({
             x: c * squareSize,
             y: r * squareSize,
-            fill: 0,     // 0 = empty, 1 = filled
-            alpha: 0,    // current alpha
+            fill: 0,
+            alpha: 0,
             offset: direction === 'diagonal' ? (c + r) * 0.15 : 0,
           });
         }
       }
     };
 
-    const draw = (t) => {
+    const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
@@ -93,14 +98,14 @@ export default function ShapeGrid({
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
 
-    canvas.addEventListener('mousemove', onMouseMove);
-    canvas.addEventListener('mouseleave', onMouseLeave);
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseleave', onMouseLeave);
 
     return () => {
       cancelAnimationFrame(animRef.current);
       ro.disconnect();
-      canvas.removeEventListener('mousemove', onMouseMove);
-      canvas.removeEventListener('mouseleave', onMouseLeave);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseleave', onMouseLeave);
     };
   }, [squareSize, speed, borderColor, hoverFillColor, direction]);
 

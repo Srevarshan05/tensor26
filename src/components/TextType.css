@@ -1,12 +1,19 @@
 .text-type {
-  display: inline-block;
-  white-space: pre-wrap;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.text-type__content {
+  display: inline;
 }
 
 .text-type__cursor {
-  margin-left: 0.25rem;
+  margin-left: 0.15em;
   display: inline-block;
   opacity: 1;
+  line-height: 1;
 }
 
 .text-type__cursor--hidden {

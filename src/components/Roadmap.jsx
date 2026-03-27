@@ -80,8 +80,8 @@ const Roadmap = () => {
   const isMobile = windowSize.width > 0 && windowSize.width < 1024;
 
   // --- Dynamic Layout Math ---
-  const canvasWidth = isMobile ? 400 : 1400; 
-  const canvasHeight = isMobile ? 1600 : 900; 
+  const canvasWidth = isMobile ? Math.min(windowSize.width, 420) : 1400;
+  const canvasHeight = isMobile ? 1900 : 900;
   const centerX = canvasWidth / 2;
   const centerY = canvasHeight / 2 + (isMobile ? 0 : 50); 
   const amplitude = isMobile ? 100 : 140;
@@ -155,7 +155,7 @@ const Roadmap = () => {
   }, [isMobile, centerX, centerY, amplitude, segmentLength, halfSegment, canvasWidth]);
 
   return (
-    <div className="w-full bg-white font-sans py-20 overflow-hidden">
+    <div className="w-full bg-transparent font-sans pt-36 pb-20 overflow-hidden">
       <div className="max-w-5xl mx-auto px-6 mb-12 text-center relative z-50">
         <h1 className="text-5xl md:text-7xl font-black text-on-surface tracking-tight mb-6" style={{ fontFamily: "'Orbitron', sans-serif" }}>
           Hackathon <span className="text-primary">Journey</span>
@@ -169,17 +169,22 @@ const Roadmap = () => {
         <div className="relative mx-auto px-12" style={{ width: `${canvasWidth + 100}px`, height: `${canvasHeight}px` }}>
           <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" viewBox={`0 0 ${canvasWidth + 100} ${canvasHeight}`}>
             <defs>
-              <filter id="roadGlow"><feGaussianBlur stdDeviation="10" result="blur" /><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-              <linearGradient id="roadGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#5227FF" />
-                <stop offset="50%" stopColor="#8B5CF6" />
-                <stop offset="100%" stopColor="#C026D3" />
-              </linearGradient>
+              <filter id="blackGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="6" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
             </defs>
             <g transform={`translate(${isMobile ? 0 : 50}, 0)`}>
-              {/* --- Thick Glowing Minimalist Line --- */}
-              <path d={visualPath} fill="none" stroke="rgba(82,39,255,0.05)" strokeWidth="40" strokeLinecap="round" filter="blur(20px)" />
-              <path d={visualPath} fill="none" stroke="url(#roadGrad)" strokeWidth="8" strokeLinecap="round" filter="url(#roadGlow)" />
+              {/* Soft black outer glow */}
+              <path d={visualPath} fill="none" stroke="rgba(0,0,0,0.18)" strokeWidth="18" strokeLinecap="round" />
+              {/* Main glowing black line */}
+              <path d={visualPath} fill="none" stroke="#111111" strokeWidth="3" strokeLinecap="round" filter="url(#blackGlow)" />
+              {/* Bright center highlight */}
+              <path d={visualPath} fill="none" stroke="rgba(255,255,255,0.55)" strokeWidth="1" strokeLinecap="round" />
             </g>
           </svg>
 
@@ -251,14 +256,18 @@ const Roadmap = () => {
               offsetPath: `path('${motionPath}')`,
               WebkitOffsetPath: `path('${motionPath}')`,
               offsetDistance: `${currentPhase * 25}%`,
-              offsetRotate: isMobile ? 'auto 90deg' : 'auto 0deg',
+              offsetRotate: '0deg',
               transition: 'offset-distance 0.75s cubic-bezier(0.4, 0, 0.2, 1)',
               marginLeft: isMobile ? '0' : '50px'
             }}
           >
             <div 
               className="transition-transform duration-[500ms] ease-in-out"
-              style={{ transform: `rotate(${isReversing ? 180 : 0}deg)` }}
+              style={{
+                transform: isMobile
+                  ? `rotate(${isReversing ? 270 : 90}deg)`
+                  : `rotate(${isReversing ? 180 : 0}deg)`
+              }}
             >
               <PremiumF1Car />
             </div>

@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import GradientText from '../components/GradientText';
 import TextType from '../components/TextType';
 import tensorVideo from '../assets/tensor_video.mp4';
+import srmLogo from '../assets/srm_trichy.svg';
+import ieeeLogo from '../assets/ieee_logo.png';
 
 const quickInfo = [
   { icon: 'event', label: 'Date', value: 'April 16–17' },
@@ -17,28 +19,27 @@ const quickInfo = [
   { icon: 'map', label: 'Venue', value: 'SRM IST Trichy' },
 ];
 
-const partners = [
-  { name: 'IEEE Logo', src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA2mKDfv4DkPsg4nh0weDupqA0t8oenC3diYJSi-VvqRUFDoJ6ws54ZVJ-37SeJDzQSUL5n1uVPjYcJ1GYiD8LWkH7jhi7w4h-LaYa1haQNyBdsDMlg_Sp1t-Lz1w93gD-sjaWhChIV82dGnODWuNXBe5Z_mCM_ZxdTtrzeR6UD_aoELh_FHo8L9BOb1TfB5_cYiORB4zlVOJMlQ5xo4waHbY1_PB_wZ6feI3MoSdlflqoAF9t1_lVGZqqeQc5M0rGTC-nefy4iqgQ' },
-  { name: 'SRM Logo', src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBEYtruQmack6gBAKm5QVsHKWBb2UikY364ovtITXwn1azzQR1yDkndXWXEh7hF3Q8CZaqmot-W7--yYS0Tfmtl3U6n-UUqDVRNPEyvENYPprVxu6al3LSpIu8AQpiIzz6gYPkEwFHwXjCVxV9ooaohxH7sSGozpjjLeYblfvFrftwMZTGHK4ffB_9KqYrCnVC7oQ8SKVQKV2NiUuDhYB9ZYC7avrXoFO2q1MQvPSW14wHB7X0sSn8JRLFN-EN1oYrcIZVWGC7MhCY' },
-  { name: 'Tech Partner', src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBBS25SXpnRxZvGdGUGFQYwpVk9b5oLNMxCNtKw665GUTN_ZLGHUrhX3PMtZBMv50nz8k7kmanPZRQh5zWansAGGf7OCuSd7gmvqzbinmlMGTEBEyTL6SEI45rQ_aEroWohwT_L3nIbbAFnUQolCgOa28lZP0eUz1MDtEM1iHBcQTCUPv4w6_VDErDJgxXC7wwQPzh3dl8EVDx9-aAYxSwBvWtOcGpCP7mpvodbbY_f3FoQNt5_KUAw407YOz1tx18SWJB4mQp31u8' },
-  { name: 'Cloud Partner', src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBlabEpQ5kHgin7LDF0HVif0URW8fZk2uCcaokc6mvL3JiYx40qzHzU9X5dtpcbzvQXKSjuFmb8VfRh9c1C-wVv1QOmQrvKFV2lvgbUDKdTmLLJaiW0bWx_Q1osv6Ukqwzx43XL4AQfyeJetGmFqlVfhww-ZKdYgyK-CTJ1hDDO1cqFNhJCbTox4yzu81nT_nLc0kNhBC1ZKFWk3g1mFn3y5AKo0Z88fx8dot8efWYPs3wLVYiSKKFgC6eBI_adbJk8yho0ggfc7pI' },
+const organizers = [
+  { name: 'SRM Tiruchirappalli', src: srmLogo },
+  { name: 'IEEE Student Branch Trichy', src: ieeeLogo },
 ];
 
 export default function Home() {
   const navigate = useNavigate();
   const videoRef = useRef(null);
-  const [muted, setMuted] = useState(true);
-
-  // Set medium volume when unmuted
-  const toggleMute = () => {
-    if (videoRef.current) {
-      const next = !muted;
-      videoRef.current.muted = next;
-      videoRef.current.volume = 0.5;
-      if (!next) videoRef.current.play();
-      setMuted(next);
-    }
-  };
+  useEffect(() => {
+    // Attempt to play with sound on first interaction
+    const handleFirstClick = () => {
+      if (videoRef.current) {
+        videoRef.current.muted = false;
+        videoRef.current.volume = 0.5;
+        videoRef.current.play().catch(e => console.log("Audio play blocked", e));
+      }
+      document.removeEventListener('click', handleFirstClick);
+    };
+    document.addEventListener('click', handleFirstClick);
+    return () => document.removeEventListener('click', handleFirstClick);
+  }, []);
 
   return (
     <main className="min-h-screen">
@@ -55,48 +56,31 @@ export default function Home() {
           <source src={tensorVideo} type="video/mp4" />
         </video>
 
-        {/* Mute / Unmute button */}
-        <button
-          onClick={toggleMute}
-          className="absolute bottom-8 right-8 z-30 flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full hover:bg-white/20 transition"
-        >
-          <span className="material-symbols-outlined text-base">
-            {muted ? 'volume_off' : 'volume_up'}
-          </span>
-          {muted ? 'Unmute' : 'Mute'}
-        </button>
-
-        {/* Tall smooth fade into Section 2 — black→white smudge */}
-        <div className="absolute bottom-0 left-0 w-full h-64 z-20 pointer-events-none"
-          style={{ background: 'linear-gradient(to top, #ffffff 0%, rgba(255,255,255,0.7) 40%, transparent 100%)' }}
-        />
+        {/* Ensure the bottom of the hero is deep black for the smudge to start from */}
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none" />
       </section>
 
-      {/* ─── Section 2: Core Branding Section ─── */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-20 pb-32 overflow-hidden">
-        {/* ShapeGrid canvas background */}
+      {/* ─── Section 2: Massive ShapeGrid Experience ─── */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 pt-[60vh] pb-32 overflow-hidden bg-[#fdfdfd]">
+        {/* ShapeGrid - Background grid layer */}
         <div className="absolute inset-0 z-0">
           <ShapeGrid
-            speed={0.5}
-            squareSize={60}
+            speed={0.7}
+            squareSize={50}
             direction="diagonal"
             borderColor="#bfc4c0"
             hoverFillColor="#241334"
             shape="square"
-            hoverTrailAmount={0}
+            hoverTrailAmount={20}
           />
         </div>
 
-        {/* Top smudge blending from video section */}
-        <div className="absolute top-0 left-0 w-full h-32 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, #ffffff 0%, transparent 100%)' }}
+        {/* Top smudge - Silk-smooth Black Hero smudging INTO the grid page professionally */}
+        <div className="absolute top-0 left-0 w-full h-[60vh] z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, #000 0%, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.3) 55%, rgba(0,1,0,0.1) 80%, transparent 100%)' }}
         />
 
-        {/* Bottom smudge into Info Grid */}
-        <div className="absolute bottom-0 left-0 w-full h-32 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to top, #f8f9ff 0%, transparent 100%)' }}
-        />
-
+        {/* ─── Branding Block ─── */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -109,11 +93,13 @@ export default function Home() {
             style={{ fontFamily: "'Orbitron', sans-serif" }}
           >
             <TextType
+              as="span"
               text="TENSOR'26"
-              typingSpeed={120}
+              typingSpeed={140}
+              pauseDuration={3000}
               showCursor={false}
-              loop={false}
-              className="inline-block"
+              loop={true}
+              className="inline-block outline-none"
             />
           </h1>
           <GradientText
@@ -130,6 +116,7 @@ export default function Home() {
 
           <div className="flex flex-col items-center space-y-8">
             <MagicButton
+              color="#1A1A1A"
               href="https://unstop.com/hackathons/tensor26-srm-insitute-of-science-and-technology-1661516"
             />
             <div className="flex flex-wrap justify-center items-center gap-6 text-on-surface font-semibold tracking-tight">
@@ -145,58 +132,55 @@ export default function Home() {
             </div>
           </div>
         </motion.div>
-      </section>
 
-      {/* ─── Info Grid Section ─── */}
-      <SectionWrapper
-        className="py-24 border-y border-slate-100 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #f8f9ff 0%, #faf8ff 35%, #ffffff 55%, #faf5ff 75%, #f5f8ff 100%)' }}
-      >
-        {/* Top smudge */}
-        <div className="absolute top-0 left-0 w-full h-20 pointer-events-none"
-          style={{ background: 'linear-gradient(to bottom, #f8f9ff 0%, transparent 100%)' }}
-        />
-        <div className="absolute top-0 left-0 w-96 h-96 bg-indigo-400/10 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-violet-400/10 rounded-full blur-[100px] translate-x-1/2 translate-y-1/2" />
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 relative z-10">
+        {/* ─── Integrated Info Cards ─── */}
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 mt-32 relative z-20">
           {quickInfo.map((info, i) => (
-            <Card key={i} className="p-8 border border-primary/5 bg-white/80 backdrop-blur-sm">
-              <span className="material-symbols-outlined text-primary mb-4 block text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>
-                {info.icon}
-              </span>
-              <p className="text-sm uppercase tracking-wider text-on-surface-variant mb-1">{info.label}</p>
-              <h3 className="text-xl font-bold text-on-surface">{info.value}</h3>
-            </Card>
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+            >
+              <Card className="p-8 border border-white/30 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                <span className="material-symbols-outlined text-primary mb-4 block text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  {info.icon}
+                </span>
+                <p className="text-sm uppercase tracking-wider text-on-surface-variant mb-1 font-black opacity-60">{info.label}</p>
+                <h3 className="text-xl font-black text-on-surface" style={{ fontFamily: "'Orbitron', sans-serif" }}>{info.value}</h3>
+              </Card>
+            </motion.div>
           ))}
         </div>
-      </SectionWrapper>
 
-      {/* ─── Partners Section ─── */}
-      <SectionWrapper
-        className="py-32 border-t border-slate-100 relative overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, #f8f9ff 0%, #faf8ff 35%, #ffffff 55%, #faf5ff 75%, #f5f8ff 100%)' }}
-      >
-        <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-400/10 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-violet-400/10 rounded-full blur-[100px] -translate-x-1/2 translate-y-1/2" />
-        <div className="max-w-5xl mx-auto text-center relative z-10 px-6">
-          <p className="text-[10px] uppercase tracking-[0.6em] font-black text-on-surface-variant/40 mb-16">Trusted Industry Leaders</p>
-          <div className="flex flex-wrap justify-center items-center gap-16 grayscale opacity-40 hover:grayscale-0 transition-all duration-700">
-            {partners.map((partner, i) => (
-              <motion.img
-                key={i}
-                src={partner.src}
-                alt={partner.name}
-                whileHover={{ scale: 1.15 }}
-                className="h-10 w-auto object-contain"
-              />
-            ))}
-          </div>
+        {/* ─── Organized By Section ─── */}
+        <div className="relative z-20 py-24 border-t border-slate-100/50 w-full mt-32">
+            <div className="max-w-6xl mx-auto text-center px-6">
+                <p className="text-xl uppercase tracking-[0.4em] font-black text-slate-800 mb-20 opacity-100" style={{ fontFamily: "'Orbitron', sans-serif" }}>ORGANIZED BY</p>
+                <div className="flex flex-wrap justify-center items-center gap-16">
+                    {organizers.map((org, i) => (
+                    <motion.div 
+                        key={i}
+                        whileHover={{ y: -15, scale: 1.02, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)' }}
+                        className="glass-morphism px-16 py-12 rounded-[40px] shadow-sm transition-all duration-500"
+                    >
+                        <img
+                            src={org.src}
+                            alt={org.name}
+                            className="h-32 md:h-40 w-auto object-contain"
+                        />
+                    </motion.div>
+                    ))}
+                </div>
+            </div>
         </div>
+
         {/* Bottom smudge smudge into footer */}
         <div className="absolute bottom-0 left-0 w-full h-32 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(to top, #ffffff 0%, transparent 100%)' }}
+          style={{ background: 'linear-gradient(to top, #e8e8e8 0%, transparent 100%)' }}
         />
-      </SectionWrapper>
+      </section>
     </main>
   );
 }

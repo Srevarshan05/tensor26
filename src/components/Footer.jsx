@@ -2,17 +2,16 @@ import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 
 const footerLinks = [
-  { label: 'IEEE Student Branch', to: '#' },
-  { label: 'SRM IST Trichy', to: '#' },
-  { label: 'Privacy Policy', to: '#' },
-  { label: 'Terms', to: '#' },
+  { label: 'Code of Conduct', to: '/code-of-conduct' },
+  { label: 'Privacy Policy', to: '/privacy-policy' },
+  { label: 'Terms and Conditions', to: '/terms' },
 ]
 
 export default function Footer() {
   return (
     <footer 
-      className="w-full py-16 border-t border-slate-100 font-sans text-sm relative overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #f8f9ff 0%, #faf8ff 35%, #ffffff 55%, #faf5ff 75%, #f5f8ff 100%)' }}
+      className="w-full py-16 border-t border-slate-200/50 font-sans text-sm relative overflow-hidden"
+      style={{ background: 'linear-gradient(to bottom, #f2f2f2 0%, #e8e8e8 100%)' }}
     >
       {/* Subtle glow orbs */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-400/5 rounded-full blur-[80px] translate-x-1/2 -translate-y-1/2" />
