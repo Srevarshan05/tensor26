@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface-bright: #f9f9f9;
+  --color-error: #9f403d;
+  --color-error-dim: #4e0309;
+  --color-primary-container: #dbe1ff;
+  --color-tertiary-dim: #564f6b;
+  --color-surface-container-low: #f3f3f3;
+  --color-inverse-on-surface: #9d9d9d;
+  --color-outline: #7b7b7b;
+  --color-on-background: #323232;
+  --color-secondary-container: #e4e2e6;
+  --color-primary-fixed-dim: #c7d3ff;
+  --color-tertiary-fixed-dim: #d0c7e8;
+  --color-on-error-container: #752121;
+  --color-on-surface: #323232;
+  --color-outline-variant: #b2b2b2;
+  --color-on-tertiary: #fdf7ff;
+  --color-primary: #0053db;
+  --color-on-secondary-fixed-variant: #5b5b5f;
+  --color-on-tertiary-fixed-variant: #59526e;
+  --color-surface-container: #eeeeee;
+  --color-error-container: #fe8983;
+  --color-on-primary-container: #0048bf;
+  --color-surface-tint: #0053db;
+  --color-on-primary: #f8f7ff;
+  --color-tertiary-container: #dfd5f7;
+  --color-tertiary-fixed: #dfd5f7;
+  --color-background: #f9f9f9;
+  --color-on-tertiary-fixed: #3c3650;
+  --color-secondary-dim: #535356;
+  --color-on-tertiary-container: #4f4964;
+  --color-primary-fixed: #dbe1ff;
+  --color-on-primary-fixed: #003798;
+  --color-inverse-primary: #618bff;
+  --color-surface: #f9f9f9;
+  --color-tertiary: #625b77;
+  --color-surface-dim: #dadada;
+  --color-on-secondary: #faf8fc;
+  --color-primary-dim: #0048c1;
+  --color-on-surface-variant: #5f5f5f;
+  --color-surface-container-highest: #e2e2e2;
+  --color-on-secondary-container: #515155;
+  --color-secondary-fixed: #e4e2e6;
+  --color-surface-variant: #e2e2e2;
+  --color-on-primary-fixed-variant: #0050d4;
+  --color-inverse-surface: #0e0e0e;
+  --color-secondary-fixed-dim: #d5d3d8;
+  --color-on-error: #fff7f6;
+  --color-on-secondary-fixed: #3f3f43;
+  --color-secondary: #5f5f62;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-high: #e8e8e8;
+
+  --font-family-sans: 'Inter', sans-serif;
+  --font-family-headline: 'Inter', sans-serif;
+  --font-family-body: 'Inter', sans-serif;
+  --font-family-label: 'Inter', sans-serif;
+
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f9f9;
+    color: #323232;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+}
+
+@layer utilities {
+  .glass-nav {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #0053db, #0048c1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.45) !important;
+    backdrop-filter: blur(28px) !important;
+    -webkit-backdrop-filter: blur(28px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.55) !important;
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.75),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 0 46px 20px rgba(255, 255, 255, 0.1) !important;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Extreme Edge Highlight */
+  .glass-morphism::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 1),
+      transparent
+    );
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  /* Premium Glint */
+  .glass-morphism::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.5px;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 1),
+      transparent,
+      rgba(255, 255, 255, 0.5)
+    );
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .text-glass-glow {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+
+  /* ───── Interactive 3D Carousel (From carousel.txt) ───── */
+  @keyframes autoRun3d {
+    from {
+      transform: perspective(1000px) rotateY(-360deg);
+    }
+    to {
+      transform: perspective(1000px) rotateY(0deg);
+    }
+  }
+
+  @keyframes animateBrightness {
+    10% { filter: brightness(1); }
+    50% { filter: brightness(0.6); }
+    90% { filter: brightness(1); }
+  }
+
+  .carousel-3d-wrapper {
+    --distance: 280px;
+    --card-w: 220px;
+    --card-h: 300px;
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  @media (max-width: 768px) {
+    .carousel-3d-wrapper {
+      --distance: 180px;
+      --card-w: 160px;
+      --card-h: 220px;
+      height: 350px;
+    }
+  }
+
+  .card-3d {
+    position: relative;
+    width: var(--card-w);
+    height: var(--card-h);
+    transform-style: preserve-3d;
+    animation: autoRun3d 12s linear infinite;
+    will-change: transform;
+  }
+
+  .card-3d div {
+    position: absolute;
+    width: var(--card-w);
+    height: var(--card-h);
+    top: 50%;
+    left: 50%;
+    transform-origin: center center;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 2px solid rgba(255,255,255,0.3);
+    background-color: #ffffff;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .card-3d:hover {
+    animation-play-state: paused !important;
+  }
+
+  .card-3d div:hover {
+    transform: translate(-50%, -50%) scale(1.05) !important;
+    z-index: 100 !important;
+    border-color: #0053db;
+  }
+
+  /* ───── Glass Card Upgrade (From glass morphism code.txt) ───── */
+  .glass-card-premium {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-radius: 24px !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 0 50px 20px rgba(255, 255, 255, 0.15) !important;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .glass-card-premium:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.7) !important;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15) !important;
+  }
+}
