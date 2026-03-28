@@ -172,9 +172,15 @@ export default function Navbar() {
               }`}
               title="Toggle Background Sound"
             >
-              <span className="material-symbols-outlined text-[18px]">
-                {isMuted ? 'volume_off' : 'volume_up'}
-              </span>
+              {isMuted ? (
+                <svg className="w-[20px] h-[20px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M5.707 4.293a1 1 0 0 0-1.414 1.414l14 14a1 1 0 0 0 1.414-1.414l-.004-.005C21.57 16.498 22 13.938 22 12a9.972 9.972 0 0 0-2.929-7.071 1 1 0 1 0-1.414 1.414A7.972 7.972 0 0 1 20 12c0 1.752-.403 3.636-1.712 4.873l-1.433-1.433C17.616 14.37 18 13.107 18 12c0-1.678-.69-3.197-1.8-4.285a1 1 0 1 0-1.4 1.428A3.985 3.985 0 0 1 16 12c0 .606-.195 1.335-.59 1.996L13 11.586V6.135c0-1.696-1.978-2.622-3.28-1.536L7.698 6.284l-1.99-1.991ZM4 8h.586L13 16.414v1.451c0 1.696-1.978 2.622-3.28 1.536L5.638 16H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2Z"/>
+                </svg>
+              ) : (
+                <svg className="w-[20px] h-[20px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.934 3.066A1 1 0 0 0 12 3c-.266 0-.52.105-.707.293L7.586 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h3.586l3.707 3.707A1 1 0 0 0 13 20V4a1 1 0 0 0-.066-.934Zm3.141 11.206a1 1 0 1 0 1.85.757A6.983 6.983 0 0 0 19 12a7.016 7.016 0 0 0-1.076-3.03 1 1 0 1 0-1.696 1.06A4.982 4.982 0 0 1 17 12a4.997 4.997 0 0 1-.925 2.272ZM19.29 4.25a1 1 0 1 0-1.414 1.414A9.976 9.976 0 0 1 21 12a9.975 9.975 0 0 1-3.124 6.336 1 1 0 0 0 1.414 1.414A11.97 11.97 0 0 0 23 12a11.975 11.975 0 0 0-3.71-8.75Z"/>
+                </svg>
+              )}
             </button>
           </div>
 
@@ -210,9 +216,15 @@ export default function Navbar() {
                 isDarkText ? 'text-slate-600 hover:text-primary bg-slate-100/50 hover:bg-slate-200' : 'text-white/80 hover:text-white bg-white/10 hover:bg-white/20'
               }`}
             >
-              <span className="material-symbols-outlined text-[18px]">
-                {isMuted ? 'volume_off' : 'volume_up'}
-              </span>
+              {isMuted ? (
+                <svg className="w-[20px] h-[20px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M5.707 4.293a1 1 0 0 0-1.414 1.414l14 14a1 1 0 0 0 1.414-1.414l-.004-.005C21.57 16.498 22 13.938 22 12a9.972 9.972 0 0 0-2.929-7.071 1 1 0 1 0-1.414 1.414A7.972 7.972 0 0 1 20 12c0 1.752-.403 3.636-1.712 4.873l-1.433-1.433C17.616 14.37 18 13.107 18 12c0-1.678-.69-3.197-1.8-4.285a1 1 0 1 0-1.4 1.428A3.985 3.985 0 0 1 16 12c0 .606-.195 1.335-.59 1.996L13 11.586V6.135c0-1.696-1.978-2.622-3.28-1.536L7.698 6.284l-1.99-1.991ZM4 8h.586L13 16.414v1.451c0 1.696-1.978 2.622-3.28 1.536L5.638 16H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2Z"/>
+                </svg>
+              ) : (
+                <svg className="w-[20px] h-[20px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.934 3.066A1 1 0 0 0 12 3c-.266 0-.52.105-.707.293L7.586 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h3.586l3.707 3.707A1 1 0 0 0 13 20V4a1 1 0 0 0-.066-.934Zm3.141 11.206a1 1 0 1 0 1.85.757A6.983 6.983 0 0 0 19 12a7.016 7.016 0 0 0-1.076-3.03 1 1 0 1 0-1.696 1.06A4.982 4.982 0 0 1 17 12a4.997 4.997 0 0 1-.925 2.272ZM19.29 4.25a1 1 0 1 0-1.414 1.414A9.976 9.976 0 0 1 21 12a9.975 9.975 0 0 1-3.124 6.336 1 1 0 0 0 1.414 1.414A11.97 11.97 0 0 0 23 12a11.975 11.975 0 0 0-3.71-8.75Z"/>
+                </svg>
+              )}
             </button>
             <button 
               className={`p-1 transition-colors ${isDarkText ? 'text-slate-600' : 'text-white/90'}`}

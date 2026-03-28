@@ -44,7 +44,25 @@ export default function Home() {
     // Listen to external remote control from Navbar
     const externalToggle = () => toggleSound();
     window.addEventListener('toggle-mute-button', externalToggle);
-    return () => window.removeEventListener('toggle-mute-button', externalToggle);
+
+    // Aggressive Auto-Unlock: Unmute on very first subtle interaction (scroll/click/key)
+    let hasUnlocked = false;
+    const unlockAudio = () => {
+      if (hasUnlocked || !videoRef.current) return;
+      hasUnlocked = true;
+      videoRef.current.muted = false;
+      setIsMuted(false);
+      window.dispatchEvent(new CustomEvent('update-mute-icon', { detail: false }));
+      videoRef.current.play().catch(e => console.warn("Waiting for strict trusted interaction"));
+    };
+
+    const interactEvents = ['pointerdown', 'keydown', 'touchstart', 'wheel'];
+    interactEvents.forEach(evt => document.addEventListener(evt, unlockAudio, { once: true }));
+
+    return () => {
+      window.removeEventListener('toggle-mute-button', externalToggle);
+      interactEvents.forEach(evt => document.removeEventListener(evt, unlockAudio));
+    };
   }, []);
 
   const toggleSound = () => {

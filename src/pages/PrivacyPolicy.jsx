@@ -41,11 +41,11 @@ export default function PrivacyPolicy() {
           <div className="flex justify-center mb-6">
              <span className="material-symbols-outlined text-5xl text-primary p-4 bg-primary/5 rounded-3xl shadow-sm">security</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-4" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+          <h1 className="text-[2.5rem] leading-tight sm:text-5xl md:text-6xl font-black tracking-tight mb-6" style={{ fontFamily: "'Orbitron', sans-serif" }}>
             Privacy <span className="text-primary">Policy</span>
           </h1>
-          <div className="w-16 h-1.5 bg-primary mx-auto rounded-full mb-8"></div>
-          <p className="text-on-surface-variant text-lg font-medium opacity-80">
+          <div className="w-24 h-2 bg-gradient-to-r from-primary to-violet-400 mx-auto rounded-full mb-8 shadow-sm"></div>
+          <p className="text-slate-700 text-lg md:text-xl font-bold max-w-2xl mx-auto leading-relaxed">
             Learn about how we handle and protect participant data throughout TENSOR'26.
           </p>
         </motion.div>
@@ -54,26 +54,26 @@ export default function PrivacyPolicy() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 1 }}
-          className="glass-morphism rounded-[40px] p-8 md:p-12 border border-white/40 shadow-xl space-y-6"
+          className="bg-white/70 backdrop-blur-3xl rounded-[2rem] sm:rounded-[3rem] p-4 sm:p-8 md:p-14 border border-white/80 shadow-2xl shadow-slate-200/50 space-y-2 sm:space-y-4"
         >
           {policyPoints.map((point, i) => (
             <motion.div 
               key={i} 
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              className="flex items-start gap-4 group"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.04 }}
+              className="flex items-start gap-4 sm:gap-6 group hover:bg-white/60 p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] transition-all duration-300 border border-transparent hover:border-white/60 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
             >
-              <div className="mt-1.5 w-2 h-2 rounded-full bg-primary/40 group-hover:bg-primary transition-colors duration-300 flex-shrink-0" />
-              <p className="text-on-surface font-medium leading-relaxed tracking-tight opacity-90 group-hover:opacity-100 transition-opacity">
+              <div className="mt-2 w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-primary/30 group-hover:bg-primary group-hover:scale-125 transition-all duration-300 flex-shrink-0 shadow-sm" />
+              <p className="text-slate-800 text-[15px] sm:text-lg md:text-xl font-bold leading-relaxed tracking-tight group-hover:text-slate-950 transition-colors">
                 {point}
               </p>
             </motion.div>
           ))}
         </motion.div>
 
-        <p className="mt-12 text-center text-on-surface-variant font-bold text-sm tracking-widest uppercase opacity-60">
+        <p className="mt-16 text-center text-slate-500 font-extrabold text-sm sm:text-base tracking-[0.2em] uppercase">
             🔐 Secure • Transparent • Privacy-Focused
         </p>
       </div>
