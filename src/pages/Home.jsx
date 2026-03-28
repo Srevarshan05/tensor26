@@ -93,7 +93,7 @@ export default function Home() {
           preload="auto"
           disablePictureInPicture
           disableRemotePlayback
-          className="absolute inset-0 w-full h-full object-cover translate-z-0"
+          className="absolute inset-0 w-full h-full object-cover translate-z-0 pointer-events-none"
           style={{ 
             willChange: 'transform, opacity',
             transform: 'translate3d(0,0,0)',

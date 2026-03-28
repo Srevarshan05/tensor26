@@ -167,7 +167,7 @@ const Roadmap = () => {
         </p>
       </div>
 
-      <div className="w-full overflow-x-auto xl:overflow-x-hidden overflow-y-visible hide-scrollbar cursor-grab active:cursor-grabbing pb-24 touch-pan-x pointer-events-auto">
+      <div className={`w-full overflow-x-auto xl:overflow-x-hidden overflow-y-visible hide-scrollbar pb-24 pointer-events-auto ${isMobile ? '' : 'cursor-grab active:cursor-grabbing'}`}>
         <div className="relative mx-auto px-12" style={{ width: `${canvasWidth + 100}px`, height: `${canvasHeight}px` }}>
           <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" viewBox={`0 0 ${canvasWidth + 100} ${canvasHeight}`}>
             <defs>
