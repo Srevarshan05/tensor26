@@ -22,7 +22,7 @@ export default function Event() {
       {/* ─── Fully Responsive Animated Roadmap Hero ─── */}
       <section className="relative overflow-hidden mb-24 min-h-[700px]">
         {/* ShapeGridMoving Background Animation — Event page only */}
-        <div className="absolute inset-0 z-0" aria-hidden="true">
+        <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
           <ShapeGridMoving
             speed={0.6}
             squareSize={40}
@@ -130,7 +130,7 @@ export default function Event() {
               </p>
               
               <div className="flex flex-wrap gap-4 mt-6">
-                <div className="glass-morphism bg-white/40 backdrop-blur-3xl border border-white/60 px-6 sm:px-12 py-5 sm:py-6 rounded-[3rem] flex flex-wrap items-center gap-3 sm:gap-6 shadow-xl relative overflow-hidden group w-full md:w-auto hover:shadow-2xl transition-all duration-700">
+                <div className="glass-morphism bg-white/70 backdrop-blur-3xl p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-white/60 shadow-2xl relative overflow-hidden group w-full md:w-auto hover:shadow-2xl transition-all duration-700">
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-violet-400/5 to-fuchsia-400/10 opacity-30 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                   {['Start', 'Build', 'Submit', 'Evaluate', 'Pitch'].map((step, i, arr) => (
                     <div key={step} className="flex items-center gap-3 sm:gap-6 relative z-10 whitespace-nowrap">

@@ -35,7 +35,9 @@ export default function Home() {
     if (videoRef.current) {
       videoRef.current.volume = 0.5;
       videoRef.current.muted = true;
-      videoRef.current.play().catch(e => console.error("Playback failed", e));
+      if (videoRef.current.paused && videoRef.current.readyState >= 2) {
+        videoRef.current.play().catch(e => console.error("Playback failed", e));
+      }
     }
 
     // Sync state to the Navbar
@@ -53,10 +55,12 @@ export default function Home() {
       videoRef.current.muted = false;
       setIsMuted(false);
       window.dispatchEvent(new CustomEvent('update-mute-icon', { detail: false }));
-      videoRef.current.play().catch(e => console.warn("Waiting for strict trusted interaction"));
+      if (videoRef.current.paused && videoRef.current.readyState >= 2) {
+        videoRef.current.play().catch(e => console.warn("Waiting for strict trusted interaction"));
+      }
     };
 
-    const interactEvents = ['pointerdown', 'keydown', 'touchstart', 'wheel'];
+    const interactEvents = ['pointerdown', 'keydown', 'touchstart', 'click'];
     interactEvents.forEach(evt => document.addEventListener(evt, unlockAudio, { once: true }));
 
     return () => {
@@ -71,7 +75,7 @@ export default function Home() {
       videoRef.current.muted = nextMuted;
       setIsMuted(nextMuted);
       window.dispatchEvent(new CustomEvent('update-mute-icon', { detail: nextMuted }));
-      if (!nextMuted) {
+      if (!nextMuted && videoRef.current.paused && videoRef.current.readyState >= 2) {
          videoRef.current.play().catch(e => console.error("Play failed", e));
       }
     }
@@ -86,20 +90,23 @@ export default function Home() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-90"
+          preload="auto"
+          disablePictureInPicture
+          disableRemotePlayback
+          className="absolute inset-0 w-full h-full object-cover translate-z-0"
+          style={{ 
+            willChange: 'transform, opacity',
+            transform: 'translate3d(0,0,0)',
+            backfaceVisibility: 'hidden'
+          }}
         >
           <source src={tensorVideo} type="video/mp4" />
         </video>
 
         {/* Ensure the bottom of the hero is deep black for the smudge to start from */}
-        <div className="absolute bottom-0 left-0 w-full h-[256px] z-10 pointer-events-none"
+        <div className="absolute bottom-0 left-0 w-full h-[200px] z-10 pointer-events-none"
           style={{
-            background: `linear-gradient(to top, 
-              #000 0%, 
-              rgba(0,0,0,0.8) 25%, 
-              rgba(0,0,0,0.4) 60%, 
-              rgba(0,0,0,0.1) 85%, 
-              transparent 100%)`
+            background: `linear-gradient(to top, #000 0%, rgba(0,0,0,0.5) 50%, transparent 100%)`
           }}
         />
       </section>
@@ -120,19 +127,9 @@ export default function Home() {
         </div>
 
         {/* Top smudge - Silk-smooth Black Hero smudging INTO the grid page professionally */}
-        <div className="absolute top-[-2px] left-0 w-full h-[70vh] z-10 pointer-events-none"
+        <div className="absolute top-[-2px] left-0 w-full h-[60vh] z-10 pointer-events-none"
           style={{
-            background: `linear-gradient(to bottom, 
-              #000 0%, 
-              rgba(0,0,0,0.95) 12%, 
-              rgba(0,0,0,0.85) 24%, 
-              rgba(0,0,0,0.7) 36%, 
-              rgba(0,0,0,0.5) 48%, 
-              rgba(0,0,0,0.3) 60%, 
-              rgba(0,0,0,0.15) 72%, 
-              rgba(0,0,0,0.05) 84%, 
-              rgba(0,0,0,0.02) 92%, 
-              transparent 100%)`
+            background: `linear-gradient(to bottom, #000 0%, rgba(0,0,0,0.6) 60%, transparent 100%)`
           }}
         />
 
@@ -203,7 +200,7 @@ export default function Home() {
               transition={{ delay: i * 0.1, duration: 0.6 }}
               className="h-full"
             >
-              <Card className="p-6 md:p-8 border border-white/40 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col items-center text-center h-full bg-white/60 backdrop-blur-md">
+              <Card className="p-6 md:p-8 border border-white/40 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col items-center text-center h-full bg-white/95 md:bg-white/60 md:backdrop-blur-md">
                 <div className="w-12 h-12 md:w-14 md:h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-5 md:mb-6">
                   <span className="material-symbols-outlined text-primary text-2xl md:text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>
                     {info.icon}

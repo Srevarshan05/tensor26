@@ -3,6 +3,7 @@ import { Suspense, lazy } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import PeekingMascot from './components/PeekingMascot'
+import ScrollToTop from './components/ScrollToTop'
 
 const Home   = lazy(() => import('./pages/Home'))
 const About  = lazy(() => import('./pages/About'))
@@ -24,6 +25,7 @@ function PageLoader() {
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Navbar />
       <Suspense fallback={<PageLoader />}>
         <Routes>

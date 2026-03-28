@@ -68,10 +68,10 @@ export default function PeekingMascot() {
     setStep('loading');
     
     // THE ABSOLUTE FINAL MASCOT EMAIL AUTOMATION URL (PROD-READY-FINAL)
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8fsxIPoeA-9cdTsjEfeQS0lWgi_brfQQpfxuMAnbKb0rQ_7rTgfgntTMs1Xtsapov7Q/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyCYgkm2F404en7tB2RhcuyJPH-sZGUjMrsEioumLjO3dKN9HqAC1C_yfH98EfQ_0_-rw/exec";
 
     try {
-      // Trigger the 1-minute delayed email automation
+      // Trigger the high-reliability inbox-grade dispatch
       await fetch(SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',

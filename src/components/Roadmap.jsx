@@ -80,7 +80,8 @@ const Roadmap = () => {
   const isMobile = windowSize.width > 0 && windowSize.width < 1024;
 
   // --- Dynamic Layout Math ---
-  const canvasWidth = isMobile ? Math.min(windowSize.width - 20, 420) : 1400;
+  const desktopWidth = Math.max(1200, windowSize.width - 100);
+  const canvasWidth = isMobile ? Math.min(windowSize.width - 20, 500) : desktopWidth;
   const canvasHeight = isMobile ? 1500 : 900; 
   const centerX = canvasWidth / 2;
   const centerY = canvasHeight / 2 + (isMobile ? 0 : 50); 
@@ -156,7 +157,7 @@ const Roadmap = () => {
   }, [isMobile, centerX, centerY, amplitude, segmentLength, halfSegment, canvasWidth]);
 
   return (
-    <div className="w-full bg-transparent font-sans pt-36 pb-20 overflow-hidden">
+    <div className="w-full bg-transparent font-sans pt-48 pb-20 overflow-visible">
       <div className="max-w-5xl mx-auto px-6 mb-12 text-center relative z-50">
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-on-surface tracking-tight mb-6" style={{ fontFamily: "'Orbitron', sans-serif" }}>
           Hackathon <span className="text-primary">Journey</span>
@@ -166,7 +167,7 @@ const Roadmap = () => {
         </p>
       </div>
 
-      <div className="w-full overflow-x-auto lg:overflow-x-hidden overflow-y-visible hide-scrollbar cursor-grab active:cursor-grabbing pb-24">
+      <div className="w-full overflow-x-auto xl:overflow-x-hidden overflow-y-visible hide-scrollbar cursor-grab active:cursor-grabbing pb-24 touch-pan-x pointer-events-auto">
         <div className="relative mx-auto px-12" style={{ width: `${canvasWidth + 100}px`, height: `${canvasHeight}px` }}>
           <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" viewBox={`0 0 ${canvasWidth + 100} ${canvasHeight}`}>
             <defs>
@@ -221,7 +222,7 @@ const Roadmap = () => {
             let x, y;
             if (isMobile) {
                 x = isLeft ? centerX - amplitude : centerX + amplitude;
-                y = (i * segmentLength) + halfSegment + 100;
+                y = (i * segmentLength) + halfSegment + 160;
             } else {
                 x = (i * segmentLength) + halfSegment + 50;
                 y = isTop ? centerY - amplitude : centerY + amplitude;
@@ -239,8 +240,8 @@ const Roadmap = () => {
                 <div 
                   className={`absolute transition-all duration-[600ms] ease-out ${
                     isMobile 
-                        ? 'left-1/2 -translate-x-1/2 -translate-y-[calc(50%+100px)]' 
-                        : (isTop ? 'bottom-[140px]' : 'top-[140px]')
+                        ? 'left-1/2 -translate-x-1/2 -translate-y-[calc(50%+115px)]' 
+                        : (isTop ? 'bottom-[150px]' : 'top-[150px]')
                   } ${
                     isCarHere 
                       ? 'opacity-100 scale-100 visible z-[100] drop-shadow-[0_25px_30px_rgba(0,0,0,0.1)]' 
@@ -248,7 +249,7 @@ const Roadmap = () => {
                   }`}
                   style={{ width: 'min(85vw, 320px)' }}
                 >
-                  <div className="glass-morphism bg-white/60 backdrop-blur-xl p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-white/60 shadow-2xl relative overflow-hidden group">
+                  <div className="glass-morphism bg-white/70 backdrop-blur-3xl p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-white/60 shadow-2xl relative overflow-hidden group">
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
                     <div className="text-6xl sm:text-8xl font-black text-primary/5 absolute -top-4 -right-4 z-0 select-none">{data.step}</div>
                     

@@ -166,7 +166,8 @@ export default function Navbar() {
             
             {/* Global Mute Toggle (Desktop) */}
             <button 
-              onClick={toggleGlobalSound}
+              onClick={(e) => { e.preventDefault(); toggleGlobalSound(); }}
+              onPointerDown={(e) => { e.preventDefault(); e.stopPropagation(); }}
               className={`flex items-center justify-center p-1 rounded-full transition-all duration-300 hover:scale-110 ${
                 isDarkText ? 'text-slate-600 hover:text-primary bg-slate-100 hover:bg-slate-200' : 'text-white/80 hover:text-white bg-white/10 hover:bg-white/20'
               }`}
@@ -211,7 +212,8 @@ export default function Navbar() {
           {/* Mobile Sound & Toggle */}
           <div className="md:hidden ml-4 flex items-center gap-3">
             <button 
-              onClick={toggleGlobalSound}
+              onClick={(e) => { e.preventDefault(); toggleGlobalSound(); }}
+              onPointerDown={(e) => { e.preventDefault(); e.stopPropagation(); }}
               className={`flex items-center justify-center p-1.5 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 ${
                 isDarkText ? 'text-slate-600 hover:text-primary bg-slate-100/50 hover:bg-slate-200' : 'text-white/80 hover:text-white bg-white/10 hover:bg-white/20'
               }`}
