@@ -26,22 +26,38 @@ const organizers = [
 ];
 
 export default function Home() {
+  const [isMuted, setIsMuted] = useState(true);
   const navigate = useNavigate();
   const videoRef = useRef(null);
+
   useEffect(() => {
-    // Attempt to play with sound on first interaction
-    const handleFirstClick = () => {
-      if (videoRef.current) {
-        videoRef.current.muted = false;
-        videoRef.current.volume = 0.5;
-        videoRef.current.play().catch(e => console.log("Audio play blocked", e));
-      }
-      document.removeEventListener('click', handleFirstClick);
-    };
-    document.addEventListener('click', handleFirstClick);
-    return () => document.removeEventListener('click', handleFirstClick);
+    // Start muted to ensure video successfully plays visually, let user toggle sound
+    if (videoRef.current) {
+      videoRef.current.volume = 0.5;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(e => console.error("Playback failed", e));
+    }
+
+    // Sync state to the Navbar
+    window.dispatchEvent(new CustomEvent('update-mute-icon', { detail: true }));
+
+    // Listen to external remote control from Navbar
+    const externalToggle = () => toggleSound();
+    window.addEventListener('toggle-mute-button', externalToggle);
+    return () => window.removeEventListener('toggle-mute-button', externalToggle);
   }, []);
 
+  const toggleSound = () => {
+    if (videoRef.current) {
+      const nextMuted = !videoRef.current.muted;
+      videoRef.current.muted = nextMuted;
+      setIsMuted(nextMuted);
+      window.dispatchEvent(new CustomEvent('update-mute-icon', { detail: nextMuted }));
+      if (!nextMuted) {
+         videoRef.current.play().catch(e => console.error("Play failed", e));
+      }
+    }
+  };
   return (
     <main className="min-h-screen">
       {/* ─── Section 1: Cinematic Video Hero ─── */}
@@ -58,14 +74,14 @@ export default function Home() {
         </video>
 
         {/* Ensure the bottom of the hero is deep black for the smudge to start from */}
-        <div className="absolute bottom-0 left-0 w-full h-[256px] z-10 pointer-events-none" 
-          style={{ 
+        <div className="absolute bottom-0 left-0 w-full h-[256px] z-10 pointer-events-none"
+          style={{
             background: `linear-gradient(to top, 
               #000 0%, 
               rgba(0,0,0,0.8) 25%, 
               rgba(0,0,0,0.4) 60%, 
               rgba(0,0,0,0.1) 85%, 
-              transparent 100%)` 
+              transparent 100%)`
           }}
         />
       </section>
@@ -87,7 +103,7 @@ export default function Home() {
 
         {/* Top smudge - Silk-smooth Black Hero smudging INTO the grid page professionally */}
         <div className="absolute top-[-2px] left-0 w-full h-[70vh] z-10 pointer-events-none"
-          style={{ 
+          style={{
             background: `linear-gradient(to bottom, 
               #000 0%, 
               rgba(0,0,0,0.95) 12%, 
@@ -98,35 +114,35 @@ export default function Home() {
               rgba(0,0,0,0.15) 72%, 
               rgba(0,0,0,0.05) 84%, 
               rgba(0,0,0,0.02) 92%, 
-              transparent 100%)` 
+              transparent 100%)`
           }}
         />
 
-          {/* Branding Block */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="w-full max-w-4xl mx-auto relative z-20 px-2"
+        {/* Branding Block */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="w-full max-w-4xl mx-auto relative z-20 px-2"
+        >
+          {/* Hackathon Timer April 16th April morning 9:00 */}
+          <CountdownTimer targetDate="2026-04-16T09:00:00+05:30" />
+
+          <h1
+            className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tight sm:tracking-[0.05em] text-on-background mb-8"
+            style={{ fontFamily: "'Orbitron', sans-serif" }}
           >
-            {/* Hackathon Timer April 16th April morning 9:00 */}
-            <CountdownTimer targetDate="2026-04-16T09:00:00+05:30" />
-  
-            <h1
-              className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tight sm:tracking-[0.05em] text-on-background mb-8"
-              style={{ fontFamily: "'Orbitron', sans-serif" }}
-            >
-              <TextType
-                as="span"
-                text="TENSOR'26"
-                typingSpeed={140}
-                pauseDuration={3000}
-                showCursor={false}
-                loop={true}
-                className="inline-block outline-none"
-              />
-            </h1>
+            <TextType
+              as="span"
+              text="TENSOR'26"
+              typingSpeed={140}
+              pauseDuration={3000}
+              showCursor={false}
+              loop={true}
+              className="inline-block outline-none"
+            />
+          </h1>
           <GradientText
             colors={['#5227FF', '#9ee2ff', '#5227FF']}
             animationSpeed={6}
@@ -149,7 +165,7 @@ export default function Home() {
                 <span className="material-symbols-outlined text-primary text-2xl group-hover:rotate-12 transition-transform">calendar_today</span>
                 <span className="text-xl md:text-2xl font-black text-on-surface tracking-tight" style={{ fontFamily: "'Orbitron', sans-serif" }}>April 16–17</span>
               </div>
-              
+
               <div className="glass-morphism px-8 py-4 rounded-2xl flex items-center space-x-3 shadow-xl border border-black/5 group hover:scale-105 transition-transform duration-500">
                 <span className="material-symbols-outlined text-primary text-2xl group-hover:bounce transition-transform">location_on</span>
                 <span className="text-xl md:text-2xl font-black text-on-surface tracking-tight" style={{ fontFamily: "'Orbitron', sans-serif" }}>SRM IST Trichy</span>
@@ -184,24 +200,24 @@ export default function Home() {
 
         {/* ─── Organized By Section ─── */}
         <div className="relative z-20 py-24 border-t border-slate-100/50 w-full mt-32">
-            <div className="max-w-6xl mx-auto text-center px-6">
-                <p className="text-xl uppercase tracking-[0.4em] font-black text-slate-800 mb-20 opacity-100" style={{ fontFamily: "'Orbitron', sans-serif" }}>ORGANIZED BY</p>
-                <div className="flex flex-wrap justify-center items-center gap-16">
-                    {organizers.map((org, i) => (
-                    <motion.div 
-                        key={i}
-                        whileHover={{ y: -15, scale: 1.02, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)' }}
-                        className="glass-morphism px-8 py-6 md:px-16 md:py-12 rounded-[25px] md:rounded-[40px] shadow-sm transition-all duration-500"
-                    >
-                        <img
-                            src={org.src}
-                            alt={org.name}
-                            className="h-20 md:h-40 w-auto object-contain"
-                        />
-                    </motion.div>
-                    ))}
-                </div>
+          <div className="max-w-6xl mx-auto text-center px-6">
+            <p className="text-xl uppercase tracking-[0.4em] font-black text-slate-800 mb-20 opacity-100" style={{ fontFamily: "'Orbitron', sans-serif" }}>ORGANIZED BY</p>
+            <div className="flex flex-wrap justify-center items-center gap-16">
+              {organizers.map((org, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ y: -15, scale: 1.02, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)' }}
+                  className="glass-morphism px-8 py-6 md:px-16 md:py-12 rounded-[25px] md:rounded-[40px] shadow-sm transition-all duration-500"
+                >
+                  <img
+                    src={org.src}
+                    alt={org.name}
+                    className="h-20 md:h-40 w-auto object-contain"
+                  />
+                </motion.div>
+              ))}
             </div>
+          </div>
         </div>
 
         {/* Bottom smudge smudge into footer */}

@@ -14,6 +14,7 @@ export default function Navbar() {
   const [scrolled, setScrolled]       = useState(false);
   const [mobileOpen, setMobileOpen]   = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+  const [isMuted, setIsMuted]         = useState(true);
   const location = useLocation();
   const isHome = location.pathname === '/';
 
@@ -22,6 +23,17 @@ export default function Navbar() {
     window.addEventListener('scroll', handler);
     return () => window.removeEventListener('scroll', handler);
   }, []);
+
+  useEffect(() => {
+    const handleSync = (e) => setIsMuted(e.detail);
+    window.addEventListener('update-mute-icon', handleSync);
+    return () => window.removeEventListener('update-mute-icon', handleSync);
+  }, []);
+
+  const toggleGlobalSound = () => {
+    setIsMuted(!isMuted);
+    window.dispatchEvent(new Event('toggle-mute-button'));
+  };
 
   // Close contact popup on route change
   useEffect(() => { setContactOpen(false); }, [location.pathname]);
@@ -151,6 +163,19 @@ export default function Navbar() {
                 {label}
               </NavLink>
             ))}
+            
+            {/* Global Mute Toggle (Desktop) */}
+            <button 
+              onClick={toggleGlobalSound}
+              className={`flex items-center justify-center p-1 rounded-full transition-all duration-300 hover:scale-110 ${
+                isDarkText ? 'text-slate-600 hover:text-primary bg-slate-100 hover:bg-slate-200' : 'text-white/80 hover:text-white bg-white/10 hover:bg-white/20'
+              }`}
+              title="Toggle Background Sound"
+            >
+              <span className="material-symbols-outlined text-[18px]">
+                {isMuted ? 'volume_off' : 'volume_up'}
+              </span>
+            </button>
           </div>
 
           <div className="hidden ml-8 md:flex items-center gap-3">
@@ -177,16 +202,27 @@ export default function Navbar() {
               Register
             </a>
           </div>
-
-          {/* Mobile Toggle */}
-          <button 
-            className="md:hidden ml-4 p-1 text-slate-600"
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d={mobileOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
+          {/* Mobile Sound & Toggle */}
+          <div className="md:hidden ml-4 flex items-center gap-3">
+            <button 
+              onClick={toggleGlobalSound}
+              className={`flex items-center justify-center p-1.5 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 ${
+                isDarkText ? 'text-slate-600 hover:text-primary bg-slate-100/50 hover:bg-slate-200' : 'text-white/80 hover:text-white bg-white/10 hover:bg-white/20'
+              }`}
+            >
+              <span className="material-symbols-outlined text-[18px]">
+                {isMuted ? 'volume_off' : 'volume_up'}
+              </span>
+            </button>
+            <button 
+              className={`p-1 transition-colors ${isDarkText ? 'text-slate-600' : 'text-white/90'}`}
+              onClick={() => setMobileOpen(!mobileOpen)}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d={mobileOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
         </nav>
 
         {/* Mobile Menu */}

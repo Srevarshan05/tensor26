@@ -3,6 +3,7 @@ import SectionWrapper from '../components/SectionWrapper';
 import Card from '../components/Card';
 import Roadmap from '../components/Roadmap';
 import ShapeGridMoving from '../components/background/ShapeGridMoving';
+import eventImg from '../assets/event-page-img.svg';
 
 const schedule = [
   { time: '09:00 – 10:00', label: 'Opening', title: 'Inauguration', desc: 'Welcome, problem statement unveiling, and AI Scientist briefing.', primary: true },
@@ -128,12 +129,13 @@ export default function Event() {
                 The TENSOR'26 workflow is designed to simulate the future of software engineering. Participants are evaluated not just on the final product, but on the sophistication of their AI orchestration process and the cleanliness of their generated systems.
               </p>
               
-              <div className="flex flex-wrap gap-4">
-                <div className="bg-slate-50 border border-slate-200 px-4 md:px-8 py-4 md:py-5 rounded-[2rem] flex flex-wrap items-center gap-2 md:gap-4 shadow-sm group w-full md:w-auto">
+              <div className="flex flex-wrap gap-4 mt-6">
+                <div className="glass-morphism bg-white/40 backdrop-blur-3xl border border-white/60 px-6 sm:px-12 py-5 sm:py-6 rounded-[3rem] flex flex-wrap items-center gap-3 sm:gap-6 shadow-xl relative overflow-hidden group w-full md:w-auto hover:shadow-2xl transition-all duration-700">
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-violet-400/5 to-fuchsia-400/10 opacity-30 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                   {['Start', 'Build', 'Submit', 'Evaluate', 'Pitch'].map((step, i, arr) => (
-                    <div key={step} className="flex items-center gap-2 md:gap-4 whitespace-nowrap">
-                      <span className={`font-black text-xs md:text-sm tracking-widest uppercase ${i === 0 || i === arr.length - 1 ? 'text-primary' : 'text-slate-400 opacity-60'}`}>{step}</span>
-                      {i < arr.length - 1 && <span className="material-symbols-outlined text-xs text-slate-300">arrow_forward</span>}
+                    <div key={step} className="flex items-center gap-3 sm:gap-6 relative z-10 whitespace-nowrap">
+                      <span className={`font-black text-xs sm:text-sm tracking-[0.25em] uppercase transition-all duration-300 ${i === 0 || i === arr.length - 1 ? 'text-primary drop-shadow-sm scale-105' : 'text-slate-500 hover:text-slate-900 group-hover:opacity-100 opacity-60'}`}>{step}</span>
+                      {i < arr.length - 1 && <span className="material-symbols-outlined text-sm font-black text-slate-300 group-hover:text-primary/40 transition-colors duration-300" style={{ fontVariationSettings: "'FILL' 1" }}>chevron_right</span>}
                     </div>
                   ))}
                 </div>
@@ -145,19 +147,16 @@ export default function Event() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1, ease: "circOut" }}
-              className="relative group"
+              className="relative flex items-center justify-center group"
             >
-              <div className="absolute -inset-4 bg-primary/10 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white bg-slate-50">
-                <img 
-                  className="w-full h-auto object-contain transition-all duration-1000 group-hover:scale-105" 
-                  src="/event-page-img.svg"
-                  alt="Competitive Flow Diagram"
-                />
-                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-700 bg-gradient-to-t from-black/70 to-transparent">
-                  <p className="text-white text-sm md:text-lg font-black italic tracking-tight">"The best way to predict the future is to generate it."</p>
-                </div>
-              </div>
+              {/* Subtle ambient glow behind the raw image */}
+              <div className="absolute inset-0 bg-primary/5 rounded-[3rem] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              
+              <img 
+                className="relative z-10 w-full max-w-[90%] h-auto object-contain drop-shadow-2xl transition-all duration-[1.5s] ease-[0.22,1,0.36,1] hover:scale-[1.03] hover:-translate-y-3 cursor-crosshair" 
+                src={eventImg}
+                alt="Competitive Flow Diagram"
+              />
             </motion.div>
           </div>
         </div>
