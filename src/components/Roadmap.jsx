@@ -80,13 +80,14 @@ const Roadmap = () => {
   const isMobile = windowSize.width > 0 && windowSize.width < 1024;
 
   // --- Dynamic Layout Math ---
-  const canvasWidth = isMobile ? Math.min(windowSize.width, 420) : 1400;
-  const canvasHeight = isMobile ? 1900 : 900;
+  const canvasWidth = isMobile ? Math.min(windowSize.width - 20, 420) : 1400;
+  const canvasHeight = isMobile ? 1500 : 900; 
   const centerX = canvasWidth / 2;
   const centerY = canvasHeight / 2 + (isMobile ? 0 : 50); 
-  const amplitude = isMobile ? 100 : 140;
+  const amplitude = isMobile ? 40 : 140; // Reduced amplitude for mobile to prevent clipping
   
-  const segmentLength = (isMobile ? canvasHeight : canvasWidth) / stepsData.length;
+  const totalVerticalPath = canvasHeight - 300; // Usable vertical space
+  const segmentLength = (isMobile ? totalVerticalPath : canvasWidth) / stepsData.length;
   const halfSegment = segmentLength / 2;
 
   const handlePhaseClick = (index) => {
@@ -157,7 +158,7 @@ const Roadmap = () => {
   return (
     <div className="w-full bg-transparent font-sans pt-36 pb-20 overflow-hidden">
       <div className="max-w-5xl mx-auto px-6 mb-12 text-center relative z-50">
-        <h1 className="text-5xl md:text-7xl font-black text-on-surface tracking-tight mb-6" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-on-surface tracking-tight mb-6" style={{ fontFamily: "'Orbitron', sans-serif" }}>
           Hackathon <span className="text-primary">Journey</span>
         </h1>
         <p className="text-on-surface-variant text-lg max-w-2xl mx-auto font-medium leading-relaxed">
@@ -188,6 +189,31 @@ const Roadmap = () => {
             </g>
           </svg>
 
+          {/* --- THE CAR (Rendered before cards to be behind them) --- */}
+          <div 
+            className="absolute top-0 left-0 w-16 h-16 flex items-center justify-center pointer-events-none z-10"
+            style={{ 
+              offsetPath: `path('${motionPath}')`,
+              WebkitOffsetPath: `path('${motionPath}')`,
+              offsetDistance: `${currentPhase * 25}%`,
+              offsetRotate: '0deg',
+              transition: 'offset-distance 0.75s cubic-bezier(0.4, 0, 0.2, 1)',
+              marginLeft: isMobile ? '0' : '50px'
+            }}
+          >
+            <div 
+              className="transition-transform duration-[500ms] ease-in-out"
+              style={{
+                transform: isMobile
+                  ? `rotate(${isReversing ? 270 : 90}deg)`
+                  : `rotate(${isReversing ? 180 : 0}deg)`
+              }}
+            >
+              <PremiumF1Car />
+            </div>
+          </div>
+
+          {/* --- THE PHASES & CARDS --- */}
           {stepsData.map((data, i) => {
             const isTop = i % 2 === 0;
             const isLeft = i % 2 === 0;
@@ -213,71 +239,65 @@ const Roadmap = () => {
                 <div 
                   className={`absolute transition-all duration-[600ms] ease-out ${
                     isMobile 
-                        ? (isLeft ? 'left-[80px] -translate-y-1/2' : 'right-[80px] -translate-y-1/2')
+                        ? 'left-1/2 -translate-x-1/2 -translate-y-[calc(50%+100px)]' 
                         : (isTop ? 'bottom-[140px]' : 'top-[140px]')
                   } ${
                     isCarHere 
-                      ? 'opacity-100 scale-100 translate-x-0 visible z-50 drop-shadow-[0_25px_25px_rgba(82,39,255,0.15)]' 
-                      : `opacity-0 scale-75 pointer-events-none invisible z-0 ${isMobile ? (isLeft ? '-translate-x-12' : 'translate-x-12') : (isTop ? 'translate-y-16' : '-translate-y-16')}`
+                      ? 'opacity-100 scale-100 visible z-[100] drop-shadow-[0_25px_30px_rgba(0,0,0,0.1)]' 
+                      : `opacity-0 scale-75 pointer-events-none invisible z-0 ${isMobile ? '-translate-y-8' : (isTop ? 'translate-y-16' : '-translate-y-16')}`
                   }`}
-                  style={{ width: isMobile ? '280px' : '320px' }}
+                  style={{ width: 'min(85vw, 320px)' }}
                 >
-                  <div className="bg-white p-8 rounded-[2.5rem] border border-primary/10 shadow-2xl relative overflow-hidden group">
-                    <div className="absolute top-0 left-0 w-full h-1.5 bg-primary/20"></div>
-                    <div className="text-8xl font-black text-slate-50 absolute -top-4 -right-4 z-0 select-none opacity-40">{data.step}</div>
+                  <div className="glass-morphism bg-white/60 backdrop-blur-xl p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-white/60 shadow-2xl relative overflow-hidden group">
+                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+                    <div className="text-6xl sm:text-8xl font-black text-primary/5 absolute -top-4 -right-4 z-0 select-none">{data.step}</div>
                     
                     <div className="relative z-10 flex flex-col items-center text-center">
-                      <div className="w-16 h-16 rounded-2xl mb-6 flex items-center justify-center shadow-lg border border-primary/10" style={{ backgroundColor: data.color }}>
-                        <data.icon size={32} color="#ffffff" />
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl mb-4 sm:mb-6 flex items-center justify-center shadow-lg border border-white/40" style={{ backgroundColor: data.color }}>
+                        <data.icon size={isMobile ? 24 : 32} color="#ffffff" />
                       </div>
-                      <h3 className="text-2xl font-black text-on-surface mb-3 tracking-tight">{data.title}</h3>
-                      <p className="text-on-surface-variant text-sm leading-relaxed font-medium">{data.description}</p>
+                      <h3 className="text-xl sm:text-2xl font-black text-on-surface mb-2 sm:mb-4 tracking-tight">{data.title}</h3>
+                      <p className="text-slate-900 text-[13px] sm:text-base leading-relaxed font-black opacity-100">{data.description}</p>
                     </div>
                   </div>
                 </div>
 
                 <button 
                   onClick={() => handlePhaseClick(i)}
-                  className={`relative w-24 h-24 rounded-full border-[10px] border-white shadow-2xl flex items-center justify-center transition-all duration-500 z-10 focus:outline-none ${
+                  className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full border-[6px] sm:border-[10px] border-white shadow-2xl flex items-center justify-center transition-all duration-500 z-10 focus:outline-none ${
                     isCarHere ? 'scale-0 opacity-0' : 'scale-100 opacity-100 hover:scale-110 hover:shadow-primary/30 cursor-pointer bg-slate-50'
                   }`}
                 >
-                  <div className={`w-8 h-8 rounded-full transition-colors flex items-center justify-center ${isTarget ? 'animate-pulse' : ''}`} style={{ backgroundColor: data.color }}>
-                     <div className="w-3 h-3 bg-white rounded-full" />
+                  <div 
+                    className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full transition-all duration-500 flex items-center justify-center ${isTarget ? 'animate-pulse' : ''}`} 
+                    style={{ 
+                      backgroundColor: data.color,
+                      boxShadow: isTarget ? `0 0 20px ${data.color}88, 0 0 40px ${data.color}44` : 'none'
+                    }}
+                  >
+                     <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white rounded-full shadow-inner" />
                   </div>
                 </button>
               </div>
             );
           })}
 
-          <div 
-            className="absolute top-0 left-0 w-16 h-16 flex items-center justify-center pointer-events-none z-40"
-            style={{ 
-              offsetPath: `path('${motionPath}')`,
-              WebkitOffsetPath: `path('${motionPath}')`,
-              offsetDistance: `${currentPhase * 25}%`,
-              offsetRotate: '0deg',
-              transition: 'offset-distance 0.75s cubic-bezier(0.4, 0, 0.2, 1)',
-              marginLeft: isMobile ? '0' : '50px'
-            }}
-          >
-            <div 
-              className="transition-transform duration-[500ms] ease-in-out"
-              style={{
-                transform: isMobile
-                  ? `rotate(${isReversing ? 270 : 90}deg)`
-                  : `rotate(${isReversing ? 180 : 0}deg)`
-              }}
-            >
-              <PremiumF1Car />
-            </div>
-          </div>
         </div>
       </div>
 
       <style dangerouslySetInnerHTML={{__html: `
         .hide-scrollbar::-webkit-scrollbar { display: none; } 
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes subtleGlow {
+          0% { filter: drop-shadow(0 0 5px rgba(82, 39, 255, 0.4)); }
+          50% { filter: drop-shadow(0 0 15px rgba(82, 39, 255, 0.7)); }
+          100% { filter: drop-shadow(0 0 5px rgba(82, 39, 255, 0.4)); }
+        }
+        
+        .phase-glow {
+          animation: subtleGlow 2s infinite ease-in-out;
+        }
       `}} />
     </div>
   );

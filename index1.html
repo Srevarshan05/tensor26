@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en-US">
+
+<head>
+	<title>TENSOR'26 – Day-Of Survival Guide</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		a[x-apple-data-detectors] {
+			color: inherit !important;
+			text-decoration: inherit !important;
+		}
+
+		#MessageViewBody a {
+			color: inherit;
+			text-decoration: none;
+		}
+
+		p {
+			line-height: inherit
+		}
+
+		.desktop_hide,
+		.desktop_hide table {
+			mso-hide: all;
+			display: none;
+			max-height: 0px;
+			overflow: hidden;
+		}
+
+		.image_block img+div {
+			display: none;
+		}
+
+		sup,
+		sub {
+			font-size: 75%;
+			line-height: 0;
+		}
+
+		.row-4 .column-1 .block-5 .button:hover,
+		.row-11 .column-1 .block-4 .button:hover,
+		.row-11 .column-2 .block-4 .button:hover,
+		.row-11 .column-3 .block-4 .button:hover,
+		.row-2 .column-1 .block-5 .button:hover,
+		.row-3 .column-1 .block-4 .button:hover,
+		.row-5 .column-1 .block-4 .button:hover {
+			background-color: #ffffff !important;
+			border-bottom: 0 solid transparent !important;
+			border-left: 0 solid transparent !important;
+			border-right: 0px solid transparent !important;
+			border-top: 0 solid transparent !important;
+			color: #101112 !important;
+		}
+
+		.row-8 .column-1 .block-4 .button:hover {
+			background-color: #fb421f !important;
+			border-bottom: 0 solid transparent !important;
+			border-left: 0 solid transparent !important;
+			border-right: 0px solid transparent !important;
+			border-top: 0 solid transparent !important;
+			color: #ffffff !important;
+		}
+
+		/* Custom CSS Grid Background applied to specific sections */
+		.grid-bg {
+			background-color: #fdfbf8;
+			background-image: linear-gradient(rgba(9, 10, 11, 0.05) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(9, 10, 11, 0.05) 1px, transparent 1px);
+			background-size: 20px 20px;
+		}
+
+		@media (max-width:720px) {
+
+			.desktop_hide table.icons-inner,
+			.row-10 .column-1 .block-1.button_block .alignment .button,
+			.row-11 .column-1 .block-4.button_block .alignment .button,
+			.row-11 .column-2 .block-4.button_block .alignment .button,
+			.row-11 .column-3 .block-4.button_block .alignment .button,
+			.row-14 .column-2 .block-1.social_block .alignment table,
+			.row-2 .column-1 .block-2.button_block .alignment .button,
+			.row-3 .column-1 .block-1.button_block .alignment .button,
+			.row-3 .column-1 .block-4.button_block .alignment .button,
+			.row-4 .column-2 .block-2.button_block .alignment .button,
+			.row-4 .column-2 .block-5.button_block .alignment .button,
+			.row-5 .column-1 .block-1.button_block .alignment .button,
+			.row-6 .column-1 .block-2.button_block .alignment .button,
+			.row-8 .column-1 .block-1.button_block .alignment .button,
+			.social_block.desktop_hide .social-table {
+				display: inline-block !important;
+			}
+
+			.icons-inner {
+				text-align: center;
+			}
+
+			.icons-inner td {
+				margin: 0 auto;
+			}
+
+			.image_block div.fullWidth {
+				max-width: 100% !important;
+			}
+
+			.mobile_hide {
+				display: none;
+			}
+
+			.row-content {
+				width: 100% !important;
+			}
+
+			.stack .column {
+				width: 100%;
+				display: block;
+			}
+
+			.mobile_hide {
+				min-height: 0;
+				max-height: 0;
+				max-width: 0;
+				overflow: hidden;
+				font-size: 0px;
+			}
+
+			.desktop_hide,
+			.desktop_hide table {
+				display: table !important;
+				max-height: none !important;
+			}
+
+			.reverse {
+				display: table;
+				width: 100%;
+			}
+
+			.reverse .column.first {
+				display: table-footer-group !important;
+			}
+
+			.reverse .column.last {
+				display: table-header-group !important;
+			}
+
+			.row-10 .column-1 .block-1.button_block td.pad,
+			.row-14 .column-2 .block-1.social_block td.pad,
+			.row-14 .column-3 .block-1.paragraph_block td.pad,
+			.row-2 .column-1 .block-2.button_block td.pad,
+			.row-3 .column-1 .block-1.button_block td.pad,
+			.row-4 .column-2 .block-2.button_block td.pad,
+			.row-5 .column-1 .block-1.button_block td.pad,
+			.row-6 .column-1 .block-2.button_block td.pad,
+			.row-7 .column-2 .block-3.paragraph_block td.pad,
+			.row-8 .column-1 .block-1.button_block td.pad {
+				padding: 10px !important;
+			}
+
+			.row-10 .column-1 .block-1.button_block span,
+			.row-2 .column-1 .block-2.button_block span,
+			.row-3 .column-1 .block-1.button_block span,
+			.row-4 .column-2 .block-2.button_block span,
+			.row-5 .column-1 .block-1.button_block span,
+			.row-6 .column-1 .block-2.button_block span,
+			.row-8 .column-1 .block-1.button_block span {
+				font-size: 9px !important;
+				line-height: 18px !important;
+			}
+
+			.row-10 .column-1 .block-1.button_block .alignment,
+			.row-11 .column-1 .block-3.paragraph_block td.pad>div,
+			.row-11 .column-1 .block-4.button_block .alignment,
+			.row-11 .column-2 .block-2.heading_block h3,
+			.row-11 .column-2 .block-3.paragraph_block td.pad>div,
+			.row-11 .column-2 .block-4.button_block .alignment,
+			.row-11 .column-3 .block-2.heading_block h3,
+			.row-11 .column-3 .block-4.button_block .alignment,
+			.row-14 .column-2 .block-1.social_block .alignment,
+			.row-2 .column-1 .block-2.button_block .alignment,
+			.row-3 .column-1 .block-1.button_block .alignment,
+			.row-3 .column-1 .block-2.heading_block h2,
+			.row-3 .column-1 .block-3.paragraph_block td.pad>div,
+			.row-3 .column-1 .block-4.button_block .alignment,
+			.row-4 .column-2 .block-2.button_block .alignment,
+			.row-4 .column-2 .block-3.heading_block h2,
+			.row-4 .column-2 .block-4.paragraph_block td.pad>div,
+			.row-4 .column-2 .block-5.button_block .alignment,
+			.row-5 .column-1 .block-1.button_block .alignment,
+			.row-6 .column-1 .block-2.button_block .alignment,
+			.row-7 .column-1 .block-2.heading_block h3,
+			.row-7 .column-1 .block-3.paragraph_block td.pad>div,
+			.row-7 .column-1 .block-4.paragraph_block td.pad>div,
+			.row-7 .column-2 .block-2.heading_block h3,
+			.row-7 .column-2 .block-3.paragraph_block td.pad>div,
+			.row-7 .column-2 .block-4.paragraph_block td.pad>div,
+			.row-8 .column-1 .block-1.button_block .alignment {
+				text-align: center !important;
+			}
+
+			.row-2 .column-1 .block-1.image_block td.pad {
+				padding: 10px 0 20px !important;
+			}
+
+			.row-2 .column-1 .block-4.paragraph_block td.pad {
+				padding: 10px 25px !important;
+			}
+
+			.row-2 .column-1 .block-3.heading_block h1 {
+				font-size: 43px !important;
+			}
+
+			.row-2 .column-1 .block-6.image_block td.pad {
+				padding: 0 20px !important;
+			}
+
+			.row-11 .column-1 .block-4.button_block span,
+			.row-11 .column-2 .block-4.button_block span,
+			.row-11 .column-3 .block-4.button_block span,
+			.row-3 .column-1 .block-4.button_block span,
+			.row-4 .column-2 .block-5.button_block span {
+				line-height: 32px !important;
+			}
+
+			.row-3 .column-2 .block-3.spacer_block,
+			.row-4 .column-2 .block-1.spacer_block {
+				height: 15px !important;
+			}
+
+			.row-7 .column-1 .block-1.image_block .alignment div,
+			.row-7 .column-1 .block-5.image_block .alignment div,
+			.row-7 .column-2 .block-1.image_block .alignment div,
+			.row-7 .column-2 .block-5.image_block .alignment div {
+				margin: 0 auto !important;
+			}
+
+			.row-7 .column-2 .block-5.image_block td.pad {
+				padding: 5px 10px 45px !important;
+			}
+
+			.row-14 .column-3 .block-1.paragraph_block td.pad>div {
+				text-align: center !important;
+				font-size: 16px !important;
+			}
+
+			.row-3 .column-1 .col-pad {
+				padding: 5px 15px 45px !important;
+			}
+
+			.row-10 .column-1 .col-pad,
+			.row-4 .column-1 .col-pad,
+			.row-4 .column-2 .col-pad,
+			.row-5 .column-1 .col-pad,
+			.row-7 .column-1 .col-pad,
+			.row-7 .column-2 .col-pad {
+				padding: 5px 15px !important;
+			}
+		}
+	</style></head>
+
+<body class="body" style="background-color: #ffffff; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
+	<table class="nl-container" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;">
+		<tbody>
+			<tr>
+				<td>
+					<table class="row row-1" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fdfbf8;">
+						<tbody>
+							<tr>
+								<td>
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 700px; margin: 0 auto;" width="700">
+										<tbody>
+											<tr>
+												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
+																<div class="spacer_block block-1" style="height:15px;line-height:15px;font-size:1px;"> </div>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table class="row row-2" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fdfbf8; background-size: auto;">
+						<tbody>
+							<tr>
+								<td>
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-size: cover; background-color: #f6f2ea; background-repeat: no-repeat; color: #000000; background-image: url('https://d1oco4z2z1fhwp.cloudfront.net/templates/default/10666/degree-orange-v6.svg'); border-radius: 20px 20px 0 0; width: 700px; margin: 0 auto;" width="700">
+										<tbody>
+											<tr>
+												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
+
+																<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="pad" style="padding-bottom:20px;padding-top:20px;width:100%;padding-right:0px;padding-left:0px;">
+																			<div class="alignment" align="center">
+																				<div style="max-width: 250px;">
+																					<span style="display: block; font-family: 'Orbitron', 'Arial Black', sans-serif; font-size: 26px; font-weight: 900; letter-spacing: 5px; color: #090a0b; text-transform: uppercase;">TENSOR<span style="color: #fb421f;">'26</span></span>
+																				</div>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+
+																<table class="button_block block-2" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="pad">
+																			<div class="alignment" align="center">
+																				<span class="button" style="background-color: #ffffff; border-radius: 4px; color: #101112; display: inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: 700; text-align: center; width: auto; letter-spacing: 2px;">
+																					<span class="btn-pad" style="word-break: break-word; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px; display: block;">
+																						<span style="word-break: break-word; line-height: 22px;">IEEE SRM IST TIRUCHIRAPPALLI</span>
+																					</span>
+																				</span>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+
+																<table class="paragraph_block block-welcome" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+																	<tr>
+																		<td class="pad" style="padding-bottom:6px;padding-left:60px;padding-right:60px;padding-top:20px;">
+																			<div style="color:#535353;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:1.6;text-align:center;">
+																				<p style="margin: 0;">You've just entered the TENSOR'26 ecosystem. Welcome to</p>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+
+																<table class="heading_block block-3" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="pad">
+																			<h1 style="margin: 0; color: #090a0b; direction: ltr; font-family: 'Orbitron', 'Arial Black', sans-serif; font-size: 48px; font-weight: 900; letter-spacing: -1px; line-height: 1.2; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 58px;">
+																				<span style="word-break: break-word;">TENSOR<span style="word-break: break-word; color: #fb421f;">'26</span></span>
+																			</h1>
+																		</td>
+																	</tr>
+																</table>
+
+																<table class="paragraph_block block-4" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+																	<tr>
+																		<td class="pad" style="padding-bottom:10px;padding-left:50px;padding-right:50px;padding-top:10px;">
+																			<div style="color:#090a0b;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:1.8;text-align:center;mso-line-height-alt:29px;">
+																				<p style="margin: 0;">Anyone can write code with an AI agent nowadays. But taking a raw idea from zero to a fully deployed, production-ready application? <strong>That’s where the real challenge lies.</strong></p>
+																				<p style="margin: 14px 0 0 0; font-weight: 700; color: #101112;">This isn't your average college hackathon. Organized by the IEEE Student Branch at SRM IST, Tiruchirappalli, TENSOR'26 is a 24-hour crucible for true builders.</p>
+																				<p style="margin: 14px 0 0 0; font-weight: 700; color: #101112;">Use the latest Gen AI tools. Code fast. But ultimately, your test is to think, build, break, fix, and deploy. Are you ready to build something that actually matters?</p>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+
+																<table class="paragraph_block block-eventinfo" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+																	<tr>
+																		<td class="pad" style="padding-bottom:25px;padding-left:40px;padding-right:40px;padding-top:20px;">
+																			<div style="background-color:#090a0b;border-radius:10px;padding:16px 20px;color:#ffffff;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:700;letter-spacing:0px;line-height:1.6;text-align:center;">
+																				<p style="margin: 0;">📅 April 16–17, 2026  |  📍 SRM IST Tiruchirappalli  |  👥 Team Size: 1–4</p>
+																				<p style="margin: 8px 0 0 0;"><a href="https://maps.app.goo.gl/5zeKbqzciQer51XV7" target="_blank" style="color:#fb421f;text-decoration:underline;">📍 Navigate to Campus Map →</a></p>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table class="row row-3" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fdfbf8; background-size: auto;">
+						<tbody>
+							<tr>
+								<td>
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-size: cover; background-color: #f6f2ea; background-repeat: no-repeat; color: #000000; border-radius: 0; width: 700px; margin: 0 auto;" width="700">
+										<tbody>
+											<tr class="reverse">
+												<td class="column column-1 first" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: middle;">
+													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="col-pad" style="padding-bottom:5px;padding-left:25px;padding-top:5px;">
+																<table class="button_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="pad">
+																			<div class="alignment" align="left">
+																				<span class="button" style="background-color: #e3ddd1; border-radius: 4px; color: #101112; display: inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: 700; text-align: center; width: auto; letter-spacing: 2px;">
+																					<span class="btn-pad" style="word-break: break-word; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px; display: block;">
+																						<span style="word-break: break-word; line-height: 22px;">EVENT OVERVIEW</span>
+																					</span>
+																				</span>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+																<table class="heading_block block-2" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="pad">
+																			<h2 style="margin: 0; color: #090a0b; direction: ltr; font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: normal; line-height: 1.5; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 39px;">
+																				<span style="word-break: break-word;"><span style="word-break: break-word; color: #fb421f;">24-Hour AI</span> Innovation Sprint</span>
+																			</h2>
+																		</td>
+																	</tr>
+																</table>
+																<table class="paragraph_block block-3" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+																	<tr>
+																		<td class="pad" style="padding-bottom: 25px;">
+																			<div style="color:#535353;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:1.8;text-align:left;mso-line-height-alt:29px;">
+																				<p style="margin: 0;">Experience a complete AI-driven development lifecycle — from prompt engineering and solution building to debugging, deployment, and final presentation.</p>
+																				<p style="margin: 10px 0 0 0;"><strong>Get ready — this is not just coding. It's building intelligent systems.</strong></p>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="column column-2 last" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: middle;">
+													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
+																<div class="spacer_block block-1" style="height:45px;line-height:45px;font-size:1px;"> </div>
+																<table class="paragraph_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+																	<tr>
+																		<td class="pad" style="padding:10px 20px;">
+																			<div style="background-color:#f0ece3;border-radius:12px;padding:20px 24px;color:#090a0b;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:15px;font-weight:400;line-height:1.9;text-align:left;">
+																				<p style="margin: 0 0 8px 0;"><strong style="color:#fb421f;">⚡ Hackathon Guidelines</strong></p>
+																				<p style="margin: 0;">⚡ 24-hour continuous development<br>⚡ Build within the given timeframe<br>⚡ Focus on AI-driven solutions<br>⚡ Collaboration is key</p>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+																<div class="spacer_block block-3" style="height:45px;line-height:45px;font-size:1px;"> </div>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table class="row row-4" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fdfbf8;">
+						<tbody>
+							<tr>
+								<td>
+									<table class="row-content stack grid-bg" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; border-radius: 0; width: 700px; margin: 0 auto;" width="700">
+										<tbody>
+											<tr>
+												<td class="column column-1" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: middle;">
+													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
+																<div class="spacer_block block-1" style="height:45px;line-height:45px;font-size:1px;"> </div>
+																<table class="paragraph_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+																	<tr>
+																		<td class="pad" style="padding:30px 20px 45px 20px;">
+																			<div style="background-color:#f0ece3;border-radius:12px;padding:20px 24px;color:#090a0b;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:15px;font-weight:400;line-height:1.9;text-align:left;box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+																				<p style="margin: 0 0 8px 0;"><strong style="color:#fb421f;">🔧 Prepare Before You Arrive</strong></p>
+																				<p style="margin: 0;">🛠 Ensure you have:<br>• VS Code installed<br>• Git & GitHub configured<br>• Node.js installed<br>• Basic familiarity with AI tools (recommended)</p>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="column column-2" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: middle;">
+													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="col-pad" style="padding-bottom:5px;padding-left:25px;padding-top:5px;">
+																<div class="spacer_block block-1" style="height:45px;line-height:45px;font-size:1px;"> </div>
+																<table class="button_block block-2" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="pad">
+																			<div class="alignment" align="left">
+																				<span class="button" style="background-color: #e3ddd1; border-radius: 4px; color: #101112; display: inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: 700; text-align: center; width: auto; letter-spacing: 2px;">
+																					<span class="btn-pad" style="word-break: break-word; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px; display: block;">
+																						<span style="word-break: break-word; line-height: 22px;">HACKATHON STRUCTURE</span>
+																					</span>
+																				</span>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+																<table class="heading_block block-3" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="pad">
+																			<h2 style="margin: 0; color: #090a0b; direction: ltr; font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: normal; line-height: 1.2; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 31px;">
+																				<span style="word-break: break-word;"><span style="word-break: break-word; color: #fb421f;">Phase-Based</span> Development Model</span>
+																			</h2>
+																		</td>
+																	</tr>
+																</table>
+																<table class="paragraph_block block-4" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+																	<tr>
+																		<td class="pad" style="padding-bottom: 45px;">
+																			<div style="color:#535353;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:1.8;text-align:left;mso-line-height-alt:29px;">
+																				<p style="margin: 0;">🔹 <strong>Phase 1:</strong> AI-Based Development & Prompt Engineering<br>
+																				🔹 <strong>Phase 2:</strong> Debugging & Fine-Tuning<br>
+																				🔹 <strong>Phase 3:</strong> Deployment & Evaluation</p>
+																				<p style="margin: 10px 0 0 0;">A structured approach combining AI automation with human intelligence. Prepare for a full product journey — from idea to working demo.</p>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table class="row row-5" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fdfbf8;">
+						<tbody>
+							<tr>
+								<td>
+									<table class="row-content stack grid-bg" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; border-radius: 0; width: 700px; margin: 0 auto;" width="700">
+										<tbody>
+											<tr>
+												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="col-pad" style="padding-bottom:45px;padding-top:45px;">
+																<table class="button_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="pad">
+																			<div class="alignment" align="center">
+																				<span class="button" style="background-color: #e3ddd1; border-radius: 4px; color: #101112; display: inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: 700; text-align: center; width: auto; letter-spacing: 2px;">
+																					<span class="btn-pad" style="word-break: break-word; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px; display: block;">
+																						<span style="word-break: break-word; line-height: 22px;">DAY-OF SURVIVAL GUIDE</span>
+																					</span>
+																				</span>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+																<table class="heading_block block-2" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="pad">
+																			<h2 style="margin: 0; color: #090a0b; direction: ltr; font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: normal; line-height: 1.2; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 31px;">
+																				What to expect in <span style="word-break: break-word; color: #fb421f;">the Arena</span>
+																			</h2>
+																		</td>
+																	</tr>
+																</table>
+																<table class="paragraph_block block-3" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+																	<tr>
+																		<td class="pad" style="padding-bottom:10px;padding-left:40px;padding-right:40px;padding-top:15px;">
+																			<div style="color:#535353;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:1.8;text-align:center;mso-line-height-alt:29px;">
+																				<p style="margin: 0 0 12px 0;"><span style="color:#fb421f; font-weight:700;">POWER:</span> Charging points available. <em>(Bring extension boards!)</em></p>
+																				<p style="margin: 0 0 12px 0;"><span style="color:#fb421f; font-weight:700;">CONNECTIVITY:</span> Please bring your own Wi-Fi/mobile hotspot. <em>(No on-site Wi-Fi)</em></p>
+																				<p style="margin: 0 0 12px 0;"><span style="color:#fb421f; font-weight:700;">PROVISIONS:</span> Midnight snacks, water stations, and refreshments provided.</p>
+																				<p style="margin: 0 0 25px 0;"><span style="color:#fb421f; font-weight:700;">CAFETERIA:</span> Available inside the IST campus.</p>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+																<table class="button_block block-4" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="pad">
+																			<div class="alignment" align="center">
+																				<a href="https://unstop.com/hackathons/tensor26-srm-insitute-of-science-and-technology-1661516" target="_blank" style="color:#ffffff;text-decoration:none;">
+																					<span class="button" style="background-color: #090a0b; border-radius: 30px; color: #ffffff; display: inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; text-align: center; width: auto; word-break: keep-all; letter-spacing: normal;">
+																						<span class="btn-pad" style="word-break: break-word; padding-left: 40px; padding-right: 40px; padding-top: 15px; padding-bottom: 15px; display: block;">
+																							<span style="word-break: break-word; line-height: 32px;">Register Now ➜</span>
+																						</span>
+																					</span>
+																				</a>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table class="row row-6" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fdfbf8;">
+						<tbody>
+							<tr>
+								<td>
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f6f2ea; border-radius: 0 0 20px 20px; color: #000000; width: 700px; margin: 0 auto;" width="700">
+										<tbody>
+											<tr>
+												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
+																<div class="spacer_block block-1" style="height:35px;line-height:35px;font-size:1px;"> </div>
+																
+																<table class="paragraph_block block-signoff" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+																	<tr>
+																		<td class="pad" style="padding:10px 40px 15px 40px;">
+																			<div style="color:#535353;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:15px;font-weight:400;letter-spacing:0px;line-height:1.8;text-align:center;mso-line-height-alt:27px;">
+																				<p style="margin: 0;"><strong>📍 Getting Here:</strong> Nearest landmarks are SRM Trichy Hospital and Irungulur.</p>
+																				<p style="margin: 15px 0 0 0;">We built this from the ground up for builders like you. See you on <strong>April 16–17, 2026</strong> — in the Arena.</p>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+
+																<table class="button_block block-3" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="pad">
+																			<div class="alignment" align="center">
+																				<a href="https://maps.app.goo.gl/5zeKbqzciQer51XV7" target="_blank" style="color:#ffffff;text-decoration:none;">
+																					<span class="button" style="background-color: #090a0b; border-radius: 30px; color: #ffffff; display: inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; text-align: center; width: auto; word-break: keep-all; letter-spacing: normal;">
+																						<span class="btn-pad" style="word-break: break-word; padding-left: 25px; padding-right: 25px; padding-top: 10px; padding-bottom: 10px; display: block;">
+																							<span style="word-break: break-word; line-height: 26px;">Navigate to Campus Map ➜</span>
+																						</span>
+																					</span>
+																				</a>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+
+																<div class="spacer_block block-4" style="height:45px;line-height:45px;font-size:1px;"> </div>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table class="row row-7" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fdfbf8;">
+						<tbody>
+							<tr>
+								<td>
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 700px; margin: 0 auto;" width="700">
+										<tbody>
+											<tr>
+												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
+																<div class="spacer_block block-1" style="height:25px;line-height:25px;font-size:1px;"> </div>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table class="row row-8" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fdfbf8;">
+						<tbody>
+							<tr>
+								<td>
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 700px; margin: 0 auto;" width="700">
+										<tbody>
+											<tr>
+												<td class="column column-1" width="33.333333333333336%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: middle;">
+													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
+																<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="pad" style="padding-bottom:5px;padding-top:5px;width:100%;padding-right:0px;padding-left:0px;">
+																			<div class="alignment" align="center">
+																				<span style="display: block; font-family: 'Orbitron', 'Arial Black', sans-serif; font-size: 18px; font-weight: 900; letter-spacing: 3px; color: #090a0b;">TENSOR<span style="color: #fb421f;">'26</span></span>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="column column-2" width="33.333333333333336%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: middle;">
+													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
+																<table class="social_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="pad">
+																			<div class="alignment" align="center">
+																				<table class="social-table" width="143px" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block;">
+																					<tr>
+																						<td style="padding:0 0 0 0px;"><a href="https://www.facebook.com/" target="_blank"><img src="https://app-rsrc.getbee.io/public/resources/social-networks-icon-sets/t-only-logo-default-black/facebook@2x.png" width="32" height="auto" alt="Facebook" title="facebook" style="display: block; height: auto; border: 0;"></a></td>
+																						<td style="padding:0 0 0 5px;"><a href="https://www.twitter.com/" target="_blank"><img src="https://app-rsrc.getbee.io/public/resources/social-networks-icon-sets/t-only-logo-default-black/twitter@2x.png" width="32" height="auto" alt="Twitter" title="twitter" style="display: block; height: auto; border: 0;"></a></td>
+																						<td style="padding:0 0 0 5px;"><a href="https://www.linkedin.com/" target="_blank"><img src="https://app-rsrc.getbee.io/public/resources/social-networks-icon-sets/t-only-logo-default-black/linkedin@2x.png" width="32" height="auto" alt="Linkedin" title="linkedin" style="display: block; height: auto; border: 0;"></a></td>
+																						<td style="padding:0 0 0 5px;"><a href="https://www.instagram.com/" target="_blank"><img src="https://app-rsrc.getbee.io/public/resources/social-networks-icon-sets/t-only-logo-default-black/instagram@2x.png" width="32" height="auto" alt="Instagram" title="instagram" style="display: block; height: auto; border: 0;"></a></td>
+																					</tr>
+																				</table>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="column column-3" width="33.333333333333336%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: middle;">
+													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
+																<table class="paragraph_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+																	<tr>
+																		<td class="pad">
+																			<div style="color:#101112;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:13px;font-weight:400;letter-spacing:0px;line-height:1.2;text-align:center;mso-line-height-alt:16px;">
+																				<p style="margin: 0;"><a href="#" target="_blank" style="text-decoration: underline; color: #535353;" rel="noopener">Unsubscribe</a></p>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table class="row row-9" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;">
+						<tbody>
+							<tr>
+								<td>
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; width: 700px; margin: 0 auto;" width="700">
+										<tbody>
+											<tr>
+												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="col-pad" style="padding-bottom:30px;padding-top:5px;">
+																<table class="paragraph_block" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+																	<tr>
+																		<td class="pad">
+																			<div style="color:#535353;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:12px;font-weight:400;letter-spacing:0px;line-height:1.2;text-align:center;">
+																				<p style="margin: 0;">© 2026 TENSOR'26 | IEEE Student Branch, SRM IST Tiruchirappalli | <a href="https://tensor26.in" style="color:#fb421f;text-decoration:none;">tensor26.in</a></p>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>

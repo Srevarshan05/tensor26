@@ -102,31 +102,31 @@ export default function Home() {
           }}
         />
 
-        {/* ─── Branding Block ─── */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="max-w-4xl mx-auto relative z-20"
-        >
-          {/* Hackathon Timer April 16th April morning 9:00 */}
-          <CountdownTimer targetDate="2026-04-16T09:00:00+05:30" />
-
-          <h1
-            className="text-6xl md:text-8xl lg:text-9xl font-black tracking-[0.05em] text-on-background mb-8"
-            style={{ fontFamily: "'Orbitron', sans-serif" }}
+          {/* Branding Block */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="w-full max-w-4xl mx-auto relative z-20 px-2"
           >
-            <TextType
-              as="span"
-              text="TENSOR'26"
-              typingSpeed={140}
-              pauseDuration={3000}
-              showCursor={false}
-              loop={true}
-              className="inline-block outline-none"
-            />
-          </h1>
+            {/* Hackathon Timer April 16th April morning 9:00 */}
+            <CountdownTimer targetDate="2026-04-16T09:00:00+05:30" />
+  
+            <h1
+              className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tight sm:tracking-[0.05em] text-on-background mb-8"
+              style={{ fontFamily: "'Orbitron', sans-serif" }}
+            >
+              <TextType
+                as="span"
+                text="TENSOR'26"
+                typingSpeed={140}
+                pauseDuration={3000}
+                showCursor={false}
+                loop={true}
+                className="inline-block outline-none"
+              />
+            </h1>
           <GradientText
             colors={['#5227FF', '#9ee2ff', '#5227FF']}
             animationSpeed={6}
@@ -191,12 +191,12 @@ export default function Home() {
                     <motion.div 
                         key={i}
                         whileHover={{ y: -15, scale: 1.02, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)' }}
-                        className="glass-morphism px-16 py-12 rounded-[40px] shadow-sm transition-all duration-500"
+                        className="glass-morphism px-8 py-6 md:px-16 md:py-12 rounded-[25px] md:rounded-[40px] shadow-sm transition-all duration-500"
                     >
                         <img
                             src={org.src}
                             alt={org.name}
-                            className="h-32 md:h-40 w-auto object-contain"
+                            className="h-20 md:h-40 w-auto object-contain"
                         />
                     </motion.div>
                     ))}

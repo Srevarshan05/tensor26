@@ -30,30 +30,30 @@ export default function FAQ() {
     setLoading(true);
     setStatus({ type: '', message: '' });
 
-    // The user will provide the Google Sheets Web App URL
-    const SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE"; 
-
-    if (SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
-      setStatus({ type: 'warning', message: 'Google Sheets integration pending: Please provide the Web App URL.' });
-      setLoading(false);
-      return;
-    }
+    // The Final V5 Google Sheets Web App URL
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzbfi6CDYleLvAAnfZOV2_CQzsrJn72cD--jphM5DajvUZRiZFIQqI90MdcgzQJkOAf6A/exec"; 
 
     try {
+      // We send as JSON to match your script's JSON.parse(e.postData.contents)
       const response = await fetch(SCRIPT_URL, {
         method: 'POST',
-        body: new URLSearchParams({
-          ...formData,
-          timestamp: new Date().toLocaleString()
+        mode: 'no-cors', // Apps Script requires no-cors for simple redirects or handled specifically
+        headers: {
+          'Content-Type': 'text/plain', // Using text/plain avoids CORS preflight issues with Apps Script
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          college: formData.college,
+          query: formData.query
         })
       });
 
-      if (response.ok) {
-        setStatus({ type: 'success', message: 'Your query has been sent! We will reply instantly.' });
-        setFormData({ name: '', email: '', college: '', query: '' });
-      } else {
-        throw new Error('Failed to send');
-      }
+      // With no-cors, we can't reliably check response.ok, 
+      // but if the fetch doesn't throw, it usually succeeded.
+      setStatus({ type: 'success', message: 'Your query has been sent! We will reply instantly.' });
+      setFormData({ name: '', email: '', college: '', query: '' });
+      
     } catch (error) {
       setStatus({ type: 'error', message: 'Something went wrong. Please try again later.' });
     } finally {

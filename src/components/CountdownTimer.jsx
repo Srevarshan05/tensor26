@@ -46,7 +46,7 @@ export default function CountdownTimer({ targetDate }) {
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="glass-card-premium w-[4.6rem] h-[4.6rem] md:w-24 md:h-24 flex items-center justify-center border border-white/40 shadow-xl overflow-hidden relative group"
+            className="glass-card-premium w-[3.8rem] h-[3.8rem] sm:w-[4.6rem] sm:h-[4.6rem] md:w-24 md:h-24 flex items-center justify-center border border-white/40 shadow-xl overflow-hidden relative group"
           >
             {/* Glossy overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-50 pointer-events-none" />
@@ -58,7 +58,7 @@ export default function CountdownTimer({ targetDate }) {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -20, opacity: 0 }}
                 transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                className="text-3xl md:text-5xl font-black tracking-tighter text-on-background relative z-10"
+                className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tighter text-on-background relative z-10"
                 style={{ fontFamily: "'Orbitron', sans-serif" }}
               >
                 {formatNumber(item.value)}

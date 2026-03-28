@@ -22,8 +22,8 @@ export default function PeekingMascot() {
   const [formData, setFormData] = useState({ name: '', email: '' });
   
   const containerRef = useRef(null);
-
-  // Load persistence
+  
+  // Production Identity awareness
   useEffect(() => {
     const submitted = localStorage.getItem('tensor26_buddy_submitted');
     if (submitted) setHasSubmitted(true);
@@ -32,11 +32,6 @@ export default function PeekingMascot() {
   // Peek Logic
   useEffect(() => {
     if (hasSubmitted || isExpanded) return;
-
-    // Initial delay before first peek
-    const initialTimer = setTimeout(() => {
-      triggerPeek();
-    }, 4000);
 
     const triggerPeek = () => {
       setBubbleText(PEEK_PHRASES[Math.floor(Math.random() * PEEK_PHRASES.length)]);
@@ -52,6 +47,11 @@ export default function PeekingMascot() {
       }, 5000);
     };
 
+    // Initial delay before first peek (Reduced for faster testing)
+    const initialTimer = setTimeout(() => {
+      triggerPeek();
+    }, 1000);
+
     // Cycle peeking every 8 seconds
     const interval = setInterval(() => {
       triggerPeek();
@@ -63,12 +63,22 @@ export default function PeekingMascot() {
     };
   }, [hasSubmitted, isExpanded]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStep('loading');
     
-    // Simulate API call
-    setTimeout(() => {
+    // THE ABSOLUTE FINAL MASCOT EMAIL AUTOMATION URL (PROD-READY-FINAL)
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8fsxIPoeA-9cdTsjEfeQS0lWgi_brfQQpfxuMAnbKb0rQ_7rTgfgntTMs1Xtsapov7Q/exec";
+
+    try {
+      // Trigger the 1-minute delayed email automation
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(formData)
+      });
+
       setStep('success');
       localStorage.setItem('tensor26_buddy_submitted', 'true');
       setHasSubmitted(true);
@@ -77,7 +87,10 @@ export default function PeekingMascot() {
         setIsExpanded(false);
         setStep('form');
       }, 4000);
-    }, 2000);
+    } catch (error) {
+      console.error("Submission failed", error);
+      setStep('form');
+    }
   };
 
   const MascotSVG = () => (
