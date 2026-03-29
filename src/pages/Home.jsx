@@ -235,28 +235,14 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ─── SEO Optimized Footer Section ─── */}
-        <div className="w-full relative z-20 py-16 bg-[#fdfdfd] border-t border-slate-100/50 mt-16">
-          <div className="max-w-4xl mx-auto px-6 text-slate-500 text-sm text-center">
-            <h1 className="text-xl font-bold text-slate-800 mb-4 tracking-tight">TENSOR26 Hackathon – Official Website</h1>
-            <p className="mb-8 font-medium leading-relaxed max-w-2xl mx-auto">
-              TENSOR26 is a national level AI hackathon hosted at SRM IST Trichy. 
-              Register now on the official TENSOR26 website to build and deploy real-world AI applications.
-            </p>
-            <div className="grid md:grid-cols-2 gap-8 text-left mt-8 bg-white/40 p-8 rounded-3xl border border-slate-200">
-              <div>
-                <h2 className="text-base font-bold text-slate-800 mb-2">What is TENSOR26?</h2>
-                <p>TENSOR26 is a 24-hour AI hackathon at SRM IST Trichy.</p>
-              </div>
-              <div>
-                <h2 className="text-base font-bold text-slate-800 mb-2">How to register for TENSOR26?</h2>
-                <p>You can register on the official TENSOR26 website.</p>
-              </div>
-            </div>
-            <p className="mt-12 text-xs font-bold text-slate-400 uppercase tracking-widest">
-              This is the Official TENSOR26 Website
-            </p>
-          </div>
+        {/* ─── Stealth SEO Block (Accessible to Google, Invisible to UI) ─── */}
+        <div className="sr-only">
+          <h1>TENSOR26 Hackathon – Official Website</h1>
+          <p>
+            TENSOR26 is a national level AI hackathon hosted at SRM IST Trichy. 
+            Register now on the official TENSOR26 website to build and deploy real-world AI applications.
+            This is the Official TENSOR26 Website.
+          </p>
         </div>
 
         {/* Bottom smudge smudge into footer */}
