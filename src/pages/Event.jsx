@@ -1,0 +1,180 @@
+import { motion } from 'framer-motion';
+import SectionWrapper from '../components/SectionWrapper';
+import Card from '../components/Card';
+import Roadmap from '../components/Roadmap';
+import ShapeGridMoving from '../components/background/ShapeGridMoving';
+import eventImg from '../assets/event-page-img.svg';
+
+const schedule = [
+  { time: '10:00 – 11:30', label: 'Opening',   title: 'Inauguration',                 desc: 'Welcome address, problem statement unveiling, and AI Scientist briefing.', primary: true },
+  { time: '11:30 – 13:00', label: 'Phase 1',   title: 'Phase 1',                      desc: 'Hackathon begins — AI-first development sprint kicks off with architecture prompts.', accent: true },
+  { time: '13:00 – 14:00', label: 'Break',      title: 'Lunch Break',                  desc: 'Catered lunch & mentor networking.', isBreak: true, icon: 'restaurant' },
+  { time: '14:00 – 15:00', label: 'Sprint',     title: 'Phase 1 Continues',            desc: 'Continued AI code generation and architectural prompting.', accent: true },
+  { time: '15:00 – 15:15', label: 'Break',      title: 'Short Break',                  desc: 'Stretch, refresh, and recharge.', isBreak: true },
+  { time: '15:15 – 16:00', label: 'Evaluation', title: 'Evaluation – Phase 1',         desc: 'Jury reviews Phase 1 output, Git diffs, and AI architecture decisions.', checkpoint: true },
+  { time: '16:00 – 20:00', label: 'Phase 2',    title: 'Phase 2',                      desc: 'Human-AI co-curation: debugging, fine-tuning, and optimization.', accent: true },
+  { time: '20:00 – 21:00', label: 'Break',      title: 'Dinner',                       desc: 'Fuel up for the night sprint ahead.', isBreak: true, icon: 'restaurant' },
+  { time: '21:00 – 00:00', label: 'Phase 2',    title: 'Phase 2 Continues',            desc: 'Night sprint — deep system integration and performance optimization.' },
+  { time: '00:00 – 00:30', label: 'Checkpoint', title: 'Break & Evaluation – Phase 2', desc: 'Short break followed by jury evaluation of Phase 2 progress.', checkpoint: true },
+  { time: '00:30 – 03:30', label: 'Phase 3',    title: 'Phase 3',                      desc: 'Frontend-backend orchestration and high-end UI/UX development.' },
+  { time: '03:30 – 04:00', label: 'Break',      title: 'Break',                        desc: 'Rest and recharge before the final push.', isBreak: true },
+  { time: '04:00 – 06:00', label: 'Phase 3',    title: 'Phase 3 Continues',            desc: 'Final feature integration, system hardening, and polish.' },
+  { time: '06:00 – 07:00', label: 'Break',      title: 'Morning Break',                desc: 'Sunrise break — refresh before cloud deployment.', isBreak: true },
+  { time: '07:00 – 09:00', label: 'DevOps',     title: 'Cloud Deployment',             desc: 'Live deployment to Vercel, Streamlit, or Hugging Face.' },
+  { time: '09:00 – 10:00', label: 'Docs',       title: 'Documentation',                desc: 'Final documentation, README, and submission preparation.' },
+  { time: '10:00 – 11:30', label: 'Finale',     title: 'Pitching & Final Evaluation',  desc: '5-minute pitches followed by rapid Q&A and jury evaluation.', dark: true },
+];
+
+export default function Event() {
+  return (
+    <main className="pb-24 bg-white">
+      {/* ─── Fully Responsive Animated Roadmap Hero ─── */}
+      <section className="relative overflow-hidden mb-24 min-h-[700px]">
+        {/* ShapeGridMoving Background Animation — Event page only */}
+        <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true">
+          <ShapeGridMoving
+            speed={0.6}
+            squareSize={40}
+            direction="diagonal"
+            borderColor="#dedede"
+            hoverFillColor="#919191"
+            shape="square"
+            hoverTrailAmount={2}
+          />
+        </div>
+
+        {/* Roadmap now handles internal responsiveness for Mobile & PC */}
+        <div className="relative z-10">
+          <Roadmap />
+        </div>
+        
+        {/* Bottom smudge into Timeline */}
+        <div className="absolute bottom-0 left-0 w-full h-32 z-20 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, #f8f9ff 0%, transparent 100%)' }}
+        />
+      </section>
+
+      {/* ─── Schedule Timeline Section ─── */}
+      <SectionWrapper 
+        className="py-16 md:py-32 px-4 md:px-8 relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #f8f9ff 0%, #faf8ff 35%, #ffffff 55%, #faf5ff 75%, #f5f8ff 100%)' }}
+      >
+        <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-400/10 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-violet-400/10 rounded-full blur-[100px] -translate-x-1/2 translate-y-1/2" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <SectionWrapper className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-20 gap-4 md:gap-8">
+            <div>
+              <span className="text-primary font-black tracking-[0.4em] text-[10px] uppercase block mb-4 opacity-60">Timeline</span>
+              <h2 className="text-4xl md:text-6xl font-black tracking-tight text-on-surface" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+                Master <span className="text-primary">Schedule</span>
+              </h2>
+            </div>
+            <div className="flex gap-3 flex-wrap">
+              <span className="bg-white/80 backdrop-blur px-4 md:px-6 py-2 rounded-2xl text-[10px] font-black tracking-widest uppercase shadow-xl border border-primary/5">24 Hours</span>
+              <span className="bg-white/80 backdrop-blur px-4 md:px-6 py-2 rounded-2xl text-[10px] font-black tracking-widest uppercase shadow-xl border border-primary/5">SRM IST TRICHY</span>
+            </div>
+          </SectionWrapper>
+
+          <div className="space-y-4 md:space-y-6">
+            {schedule.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.05, duration: 0.7, ease: "circOut" }}
+                className={`group flex flex-col md:flex-row rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-sm border border-black/5 hover:shadow-2xl transition-all duration-500
+                  ${item.isBreak ? 'bg-surface-container-low border-dashed opacity-70 scale-95 origin-left' : 
+                    item.checkpoint ? 'bg-indigo-50 border-indigo-200 shadow-indigo-100/50' : 
+                    item.dark ? 'bg-slate-900 text-white shadow-slate-900/40' : 'bg-white/90 backdrop-blur-md hover:bg-white'}
+                `}
+              >
+                {/* Time Panel */}
+                <div className={`md:w-56 px-6 py-4 md:p-8 flex flex-row md:flex-col justify-between md:justify-center items-center md:items-start border-b md:border-b-0
+                  ${item.primary ? 'bg-primary text-white shadow-[inset_0_4px_12px_rgba(0,0,0,0.1)] border-primary/20' : 
+                    item.accent ? 'bg-slate-50 group-hover:bg-primary/5 border-slate-100' : 
+                    item.checkpoint ? 'text-indigo-900 border-indigo-100' : 
+                    item.dark ? 'text-white border-white/10' : 'text-slate-900 border-slate-100'}
+                `}>
+                  <span className="font-black text-xl md:text-2xl tracking-tight">{item.time}</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] opacity-60 md:mt-1">{item.label}</span>
+                </div>
+                
+                {/* Content Panel */}
+                <div className={`flex-1 px-6 py-5 md:p-10 flex items-center
+                  ${item.accent ? 'border-l-0 md:border-l-4 border-t-4 md:border-t-0 border-primary/30 group-hover:border-primary transition-colors' : ''}
+                `}>
+                  <div className="flex items-center gap-4 md:gap-6 w-full">
+                    {item.icon && <span className="material-symbols-outlined text-primary text-3xl md:text-4xl opacity-80" style={{ fontVariationSettings: "'FILL' 1" }}>{item.icon}</span>}
+                    <div>
+                      <h4 className={`text-xl md:text-2xl font-black mb-1 md:mb-2 tracking-tight ${item.checkpoint ? 'text-indigo-900' : ''}`}>{item.title}</h4>
+                      <p className={`text-sm md:text-base leading-relaxed font-medium ${item.dark ? 'opacity-70' : 'text-on-surface-variant'}`}>{item.desc}</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* ─── Competitive Flow Summary ─── */}
+      <section className="py-16 md:py-32 bg-white px-4 md:px-8 overflow-hidden relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-24 items-center">
+            <motion.div
+               initial={{ opacity: 0, x: -40 }}
+               whileInView={{ opacity: 1, x: 0 }}
+               viewport={{ once: true }}
+               transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-black tracking-tight text-on-background mb-6 md:mb-8" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+                The Competitive <span className="text-primary">Flow</span>
+              </h2>
+              <p className="text-on-surface-variant text-base md:text-lg leading-relaxed mb-8 md:mb-12 font-medium">
+                The TENSOR'26 workflow is designed to simulate the future of software engineering. Participants are evaluated not just on the final product, but on the sophistication of their AI orchestration process and the cleanliness of their generated systems.
+              </p>
+              
+              <div className="flex flex-wrap gap-4 mt-6">
+                <div className="glass-morphism bg-white/70 backdrop-blur-3xl p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] border border-white/60 shadow-2xl relative overflow-hidden group w-full md:w-auto hover:shadow-2xl transition-all duration-700">
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-violet-400/5 to-fuchsia-400/10 opacity-30 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                  {['Start', 'Build', 'Submit', 'Evaluate', 'Pitch'].map((step, i, arr) => (
+                    <div key={step} className="flex items-center gap-3 sm:gap-6 relative z-10 whitespace-nowrap">
+                      <span className={`font-black text-xs sm:text-sm tracking-[0.25em] uppercase transition-all duration-300 ${i === 0 || i === arr.length - 1 ? 'text-primary drop-shadow-sm scale-105' : 'text-slate-500 hover:text-slate-900 group-hover:opacity-100 opacity-60'}`}>{step}</span>
+                      {i < arr.length - 1 && <span className="material-symbols-outlined text-sm font-black text-slate-300 group-hover:text-primary/40 transition-colors duration-300" style={{ fontVariationSettings: "'FILL' 1" }}>chevron_right</span>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: "circOut" }}
+              className="relative flex items-center justify-center group"
+            >
+              {/* Subtle ambient glow behind the raw image */}
+              <div className="absolute inset-0 bg-primary/5 rounded-[3rem] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+              
+              <img 
+                className="relative z-10 w-full max-w-[90%] h-auto object-contain drop-shadow-2xl transition-all duration-[1.5s] ease-[0.22,1,0.36,1] hover:scale-[1.03] hover:-translate-y-3 cursor-crosshair" 
+                src={eventImg}
+                alt="Competitive Flow Diagram"
+              />
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Bottom smudge into footer */}
+        <div className="absolute bottom-0 left-0 w-full h-32 z-10 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, #ffffff 0%, transparent 100%)' }}
+        />
+      </section>
+    </main>
+  );
+}
