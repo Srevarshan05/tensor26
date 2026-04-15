@@ -15,14 +15,16 @@ import juryShakilKhan from '../assets/jury-shakilkhan.jpeg';
 import jurySaravanakumar from '../assets/jury-saravanakumar-final.jpg';
 
 const schedule = [
-  { time: '09:00 – 10:00', label: 'Opening', title: 'Inauguration', desc: 'Welcome, problem statement unveiling, and AI Scientist briefing.', primary: true },
-  { time: '10:00 – 13:00', label: 'Sprint', title: 'Phase 1', desc: 'Autonomous AI Code Generation: Focus on architecture prompts.', accent: true },
-  { time: '13:00 – 14:00', label: 'Break', title: 'Lunch Break', desc: 'Catered meal & mentor networking.', isBreak: true, icon: 'restaurant' },
-  { time: '14:00 – 19:00', label: 'Co-Curation', title: 'Phase 2', desc: 'Human-AI co-curation: Debug, finetune, and optimize.', accent: true },
-  { time: '19:00 – 20:30', label: 'Checkpoint', title: 'Checkpoint 1', desc: 'Jury evaluation of Git diffs and AI architecture.', checkpoint: true },
-  { time: '21:30 – 04:00', label: 'Logic', title: 'Phase 3: Integration', desc: 'Frontend-backend orchestration and high-end UI/UX.' },
-  { time: '04:00 – 07:00', label: 'DevOps', title: 'Phase 4: Cloud Deployment', desc: 'Live deployment to Vercel, Streamlit, or Hugging Face.' },
-  { time: '08:30 – 10:00', label: 'Finale', title: 'Final Pitch', desc: '5-minute presentations followed by rapid Q&A.', dark: true },
+  { time: '10:00 – 11:30', label: 'Opening', title: 'Inauguration', desc: 'Welcome, problem statement unveiling, and AI Scientist briefing.', primary: true },
+  { time: '11:30 – 14:00', label: 'Sprint', title: 'Phase 1', desc: 'Autonomous AI Code Generation (no manual coding)', accent: true },
+  { time: '13:00 – 14:00', label: 'Break', title: 'Lunch Break', desc: 'Mentors available for informal Q&A', isBreak: true, icon: 'restaurant' },
+  { time: '15:15 – 16:00', label: 'Jury', title: 'Evaluation Phase 1', desc: 'Jury evaluates Git Diff & AI architecture (30%)', checkpoint: true },
+  { time: '16:00 – 00:00', label: 'Co-Curation', title: 'Phase 2', desc: 'Human-AI Co-Curation: debug, fine-tune, optimize', accent: true },
+  { time: '20:00 – 21:00', label: 'Break', title: 'Dinner Break', desc: 'Recharge and network over dinner.', isBreak: true, icon: 'restaurant' },
+  { time: '01:00 – 06:00', label: 'Logic', title: 'Phase 3', desc: 'Frontend-Backend integration, API chaining, UI/UX polish' },
+  { time: '07:00 – 09:00', label: 'DevOps', title: 'Phase 4', desc: 'Cloud deployment (Vercel / Streamlit / Hugging Face)' },
+  { time: '09:00 – 10:00', label: 'Docs', title: 'Phase 5', desc: 'AI-assisted documentation, README & mini research paper' },
+  { time: '10:00 – 12:30', label: 'Finale', title: 'Final Pitch', desc: 'Presentation & final evaluation', dark: true },
 ];
 
 const juryMembers = [
@@ -216,7 +218,7 @@ export default function Event() {
           </SectionWrapper>
 
           {/* Jury Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
             {juryMembers.map((member, i) => (
               <motion.div
                 key={member.name}
@@ -227,14 +229,14 @@ export default function Event() {
                 className="group flex flex-col items-center text-center"
               >
                 {/* Card Container */}
-                <div className="w-full bg-white/80 backdrop-blur-md rounded-[2rem] border border-black/5 p-8 md:p-10 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col items-center">
+                <div className="w-full bg-white/80 backdrop-blur-md rounded-[1.5rem] md:rounded-[2rem] border border-black/5 p-4 md:p-10 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col items-center">
                   {/* Round Photo Frame */}
                   <div className="relative mb-6">
                     {/* Glow ring on hover */}
                     <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-primary/20 via-indigo-400/10 to-violet-400/20 opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-700" />
                     
                     <div
-                      className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105"
+                      className="relative w-28 h-28 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105"
                       style={{
                         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04)',
                       }}
@@ -254,13 +256,13 @@ export default function Event() {
                   </div>
 
                   {/* Name & Details */}
-                  <h3 className="text-lg md:text-xl font-black tracking-tight text-on-surface mb-1 break-words w-full">
+                  <h3 className="text-[13px] md:text-xl font-black tracking-tight text-on-surface mb-1 break-words w-full leading-tight">
                     {member.name}
                   </h3>
-                  <p className="text-primary font-bold text-sm md:text-base mb-1">
+                  <p className="text-primary font-bold text-[11px] md:text-base mb-1 leading-snug">
                     {member.role}
                   </p>
-                  <p className="text-on-surface-variant text-xs md:text-sm font-medium opacity-70">
+                  <p className="text-on-surface-variant text-[10px] md:text-sm font-medium opacity-70 leading-snug">
                     {member.org}
                   </p>
                 </div>
